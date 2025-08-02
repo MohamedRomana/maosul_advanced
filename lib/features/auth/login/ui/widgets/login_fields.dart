@@ -2,22 +2,15 @@ import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_pickers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/widgets/app_input.dart';
 import '../../../../../generated/locale_keys.g.dart';
-import '../log_in.dart';
+import '../../logic/login_cubit.dart';
 
 class LoginFields extends StatefulWidget {
-  final GlobalKey<FormState> formKey;
-  final TextEditingController phoneController;
-  final TextEditingController passwordController;
-  const LoginFields({
-    super.key,
-    required this.formKey,
-    required this.phoneController,
-    required this.passwordController,
-  });
+  const LoginFields({super.key});
 
   @override
   State<LoginFields> createState() => _LoginFieldsState();
@@ -27,15 +20,16 @@ class _LoginFieldsState extends State<LoginFields> {
   bool isSecure = true;
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<LoginCubit>();
     return Form(
-      key: widget.formKey,
+      key: cubit.formKey,
       child: Column(
         children: [
           AppInput(
             filled: true,
             color: Colors.white,
             hint: LocaleKeys.phone.tr(),
-            controller: widget.phoneController,
+            controller: cubit.phoneController,
             prefixIcon: SizedBox(
               width: 130.w,
               child: FittedBox(
@@ -49,8 +43,8 @@ class _LoginFieldsState extends State<LoginFields> {
                         sortComparator: (Country a, Country b) =>
                             a.isoCode.compareTo(b.isoCode),
                         onValuePicked: (Country country) {
-                          phoneCode = country.phoneCode;
-                          debugPrint(phoneCode);
+                          cubit.phoneCode = country.phoneCode;
+                          debugPrint(cubit.phoneCode);
                         },
                       ),
                     ),
@@ -88,7 +82,7 @@ class _LoginFieldsState extends State<LoginFields> {
                 });
               },
             ),
-            controller: widget.passwordController,
+            controller: cubit.passwordController,
             color: Colors.white,
             hint: LocaleKeys.password.tr(),
             prefixIcon: Icon(Icons.lock, color: AppColors.primary, size: 24.sp),

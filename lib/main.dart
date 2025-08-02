@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maosul_advanced/core/di/dependancy_injection.dart';
 import 'core/constants/colors.dart';
 import 'core/cache/cache_helper.dart';
 import 'core/map/location_helper.dart';
@@ -19,6 +20,7 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
   await CacheHelper.init();
+  setUpGetIt();
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // await NotificationHelper.init();
   LocationHelper.determinePosition();

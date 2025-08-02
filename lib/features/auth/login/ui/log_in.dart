@@ -5,11 +5,6 @@ import 'widgets/login_buttons.dart';
 import 'widgets/login_fields.dart';
 import 'widgets/login_logo_text.dart';
 
-final _formKey = GlobalKey<FormState>();
-final _phoneController = TextEditingController();
-final _passwordController = TextEditingController();
-String phoneCode = '';
-
 class LogIn extends StatelessWidget {
   const LogIn({super.key});
 
@@ -27,16 +22,8 @@ class LogIn extends StatelessWidget {
               top: 50.h,
               bottom: 32.h,
             ),
-            child: Column(
-              children: [
-                const LoginLogoText(),
-                LoginFields(
-                  formKey: _formKey,
-                  phoneController: _phoneController,
-                  passwordController: _passwordController,
-                ),
-                const LoginButtons(),
-              ],
+            child: const Column(
+              children: [LoginLogoText(), LoginFields(), LoginButtons()],
             ),
           ),
         ),
