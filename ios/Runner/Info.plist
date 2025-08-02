@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Maosul Advanced</string>
+	<string>Maosul</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -43,7 +43,19 @@
 	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs access to location when open to know the real estate location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to location when open to know the real estate location</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Need to upload profile picture</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Need to upload profile picture</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

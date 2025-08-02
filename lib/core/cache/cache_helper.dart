@@ -7,6 +7,7 @@ class CacheHelper {
   static const _showImage = 'showImage';
   static const _deviceToken = 'deviceToken';
   static const _type = 'type';
+  static const _intro = 'intro';
 
   static init() async {
     _preferences = await SharedPreferences.getInstance();
@@ -18,6 +19,14 @@ class CacheHelper {
 
   static String getUserId() {
     return _preferences.getString(_userId) ?? '';
+  }
+
+  static setShowIntro(bool? showIntro) async {
+    await _preferences.setBool(_intro, showIntro ?? false);
+  }
+
+  static bool getShowIntro() {
+    return _preferences.getBool(_intro) ?? false;
   }
 
   static setShowImage(bool? showImage) async {

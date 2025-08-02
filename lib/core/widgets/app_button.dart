@@ -58,7 +58,7 @@ class AppButton extends StatelessWidget {
         ),
         child: Ink(
           decoration: BoxDecoration(
-            color: color ?? AppColors.primaryMedium,
+            color: color ?? AppColors.primary,
             // gradient: LinearGradient(
             //   colors: colors ??
             //       [
@@ -68,11 +68,12 @@ class AppButton extends StatelessWidget {
             // ),
             borderRadius: BorderRadius.circular(radius ?? 25.r),
             border: Border.all(
-                color: borderColor ?? color ?? AppColors.primaryMedium),
+              color: borderColor ?? color ?? AppColors.primaryMedium,
+            ),
           ),
           child: Container(
             constraints: BoxConstraints(
-              minWidth: width ?? 327.w,
+              minWidth: width ?? 311.w,
               minHeight: height ?? 48.h,
             ),
             alignment: Alignment.center,
