@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/constants/colors.dart';
-import 'widgets/login_buttons.dart';
-import 'widgets/login_fields.dart';
-import 'widgets/login_logo_text.dart';
+import 'package:maosul_advanced/core/constants/colors.dart';
+import 'widget/register_buttons.dart';
+import 'widget/register_fields.dart';
+import 'widget/register_logo_text.dart';
 
 final _formKey = GlobalKey<FormState>();
+final _nameController = TextEditingController();
+final _emailController = TextEditingController();
 final _phoneController = TextEditingController();
+final locationController = TextEditingController();
 final _passwordController = TextEditingController();
-String phoneCode = '';
+final _confirmPasswordController = TextEditingController();
+String registerCode = '';
 
-class LogIn extends StatelessWidget {
-  const LogIn({super.key});
+class Register extends StatelessWidget {
+  const Register({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +31,20 @@ class LogIn extends StatelessWidget {
               top: 50.h,
               bottom: 32.h,
             ),
+
             child: Column(
               children: [
-                const LoginLogoText(),
-                LoginFields(
+                const RegisterLogoText(),
+                RegisterFields(
                   formKey: _formKey,
+                  nameController: _nameController,
+                  emailController: _emailController,
                   phoneController: _phoneController,
+                  locationController: locationController,
                   passwordController: _passwordController,
+                  confirmPasswordController: _confirmPasswordController,
                 ),
-                const LoginButtons(),
+                const RegisterButtons(),
               ],
             ),
           ),

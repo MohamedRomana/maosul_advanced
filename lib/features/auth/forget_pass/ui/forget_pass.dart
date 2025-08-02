@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/constants/colors.dart';
-import 'widgets/login_buttons.dart';
-import 'widgets/login_fields.dart';
-import 'widgets/login_logo_text.dart';
+import 'package:maosul_advanced/core/constants/colors.dart';
+import 'widgets/forget_pass_buttons.dart';
+import 'widgets/forget_pass_fields.dart';
+import 'widgets/forget_pass_logo_text.dart';
 
 final _formKey = GlobalKey<FormState>();
 final _phoneController = TextEditingController();
-final _passwordController = TextEditingController();
-String phoneCode = '';
+String forgetCode = '';
 
-class LogIn extends StatelessWidget {
-  const LogIn({super.key});
+class ForgetPass extends StatelessWidget {
+  const ForgetPass({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +28,12 @@ class LogIn extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const LoginLogoText(),
-                LoginFields(
+                const ForgetPassLogoText(),
+                ForgetPassFields(
                   formKey: _formKey,
                   phoneController: _phoneController,
-                  passwordController: _passwordController,
                 ),
-                const LoginButtons(),
+                const ForgetPassButtons(),
               ],
             ),
           ),

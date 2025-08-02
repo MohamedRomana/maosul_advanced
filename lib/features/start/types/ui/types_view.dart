@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maosul_advanced/core/constants/colors.dart';
-import '../../../core/widgets/app_text.dart';
-import '../../../gen/assets.gen.dart';
-import '../../../generated/locale_keys.g.dart';
-import 'ui/widgets/choose_type.dart';
+import '../../../../core/widgets/app_text.dart';
+import '../../../../gen/assets.gen.dart';
+import '../../../../generated/locale_keys.g.dart';
+import 'widgets/choose_type.dart';
 
 class TypesView extends StatelessWidget {
   const TypesView({super.key});

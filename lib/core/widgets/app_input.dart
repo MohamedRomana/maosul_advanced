@@ -110,9 +110,9 @@ class AppInput extends StatelessWidget {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
         onFieldSubmitted: onSubmitted,
-        style: TextStyle(color: AppColors.primaryMedium, fontSize: 16.sp),
+        style: TextStyle(color: AppColors.primary, fontSize: 16.sp),
         obscureText: secureText ?? false,
-        cursorColor: cursorColor ?? AppColors.primaryMedium,
+        cursorColor: cursorColor ?? AppColors.primary,
         keyboardType: inputType ?? TextInputType.text,
         textInputAction: textInputAction ?? TextInputAction.next,
         validator: validate,
@@ -123,25 +123,25 @@ class AppInput extends StatelessWidget {
             borderRadius: BorderRadius.circular(border ?? 25.r),
             borderSide: BorderSide(
               // width: .1.w,
-              color: enabledBorderColor ?? AppColors.primaryMedium,
+              color: enabledBorderColor ?? AppColors.primary,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(border ?? 25.r),
             borderSide: BorderSide(
-              color: focusedBorderColor ?? AppColors.primaryMedium,
+              color: focusedBorderColor ?? AppColors.primary,
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(border ?? 25.r),
             borderSide: BorderSide(
-              color: errorBorderColor ?? AppColors.primaryMedium,
+              color: errorBorderColor ?? AppColors.primary,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(border ?? 25.r),
             borderSide: BorderSide(
-              color: focusedErrorBorderColor ?? AppColors.primaryMedium,
+              color: focusedErrorBorderColor ?? AppColors.primary,
             ),
           ),
           disabledBorder: OutlineInputBorder(
@@ -157,7 +157,7 @@ class AppInput extends StatelessWidget {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(border ?? 25.r),
             borderSide: BorderSide(
-              color: outLineInputColorColor ?? AppColors.primaryMedium,
+              color: outLineInputColorColor ?? AppColors.primary,
             ),
           ),
           filled: filled ?? false,

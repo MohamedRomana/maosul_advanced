@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maosul_advanced/features/start/languages/logic/lang_cubit.dart';
 import 'package:maosul_advanced/features/start/types/logic/types_cubit.dart';
-import 'package:maosul_advanced/features/start/types/types_view.dart';
+import 'package:maosul_advanced/features/start/types/ui/types_view.dart';
 import '../../../../../core/cache/cache_helper.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/widgets/app_button.dart';

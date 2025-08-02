@@ -89,11 +89,11 @@ class ChooseType extends StatelessWidget {
               ),
             ),
             AppButton(
-              onPressed: () {
+              onPressed: () async {
                 if (cubit.typesIndex == 0) {
-                  CacheHelper.setUserType('client');
+                  await CacheHelper.setUserType('client');
                 } else {
-                  CacheHelper.setUserType('provider');
+                  await CacheHelper.setUserType('provider');
                 }
                 AppRouter.navigateTo(context, const LogIn());
               },

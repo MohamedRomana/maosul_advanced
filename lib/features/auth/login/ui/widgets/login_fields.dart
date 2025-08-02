@@ -8,7 +8,7 @@ import '../../../../../core/widgets/app_input.dart';
 import '../../../../../generated/locale_keys.g.dart';
 import '../log_in.dart';
 
-class LoginFields extends StatelessWidget {
+class LoginFields extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final TextEditingController phoneController;
   final TextEditingController passwordController;
@@ -20,16 +20,22 @@ class LoginFields extends StatelessWidget {
   });
 
   @override
+  State<LoginFields> createState() => _LoginFieldsState();
+}
+
+class _LoginFieldsState extends State<LoginFields> {
+  bool isSecure = true;
+  @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      key: widget.formKey,
       child: Column(
         children: [
           AppInput(
             filled: true,
             color: Colors.white,
             hint: LocaleKeys.phone.tr(),
-            controller: phoneController,
+            controller: widget.phoneController,
             prefixIcon: SizedBox(
               width: 130.w,
               child: FittedBox(
@@ -59,14 +65,39 @@ class LoginFields extends StatelessWidget {
                 ),
               ),
             ),
+            validate: (value) {
+              if (value!.isEmpty) {
+                return LocaleKeys.phone.tr();
+              }
+              return null;
+            },
           ),
           AppInput(
             top: 16.h,
             filled: true,
-            controller: passwordController,
+            secureText: isSecure,
+            suffixIcon: IconButton(
+              icon: Icon(
+                isSecure ? Icons.visibility_off : Icons.visibility,
+                color: AppColors.primary,
+                size: 24.sp,
+              ),
+              onPressed: () {
+                setState(() {
+                  isSecure = !isSecure;
+                });
+              },
+            ),
+            controller: widget.passwordController,
             color: Colors.white,
             hint: LocaleKeys.password.tr(),
             prefixIcon: Icon(Icons.lock, color: AppColors.primary, size: 24.sp),
+            validate: (value) {
+              if (value!.isEmpty) {
+                return LocaleKeys.password.tr();
+              }
+              return null;
+            },
           ),
         ],
       ),
