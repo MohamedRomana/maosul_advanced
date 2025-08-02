@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/constants/colors.dart';
 import 'core/cache/cache_helper.dart';
-import 'features/start/splash.dart';
+import 'features/start/splash/splash.dart';
 import 'gen/fonts.gen.dart';
 import 'generated/codegen_loader.g.dart';
 

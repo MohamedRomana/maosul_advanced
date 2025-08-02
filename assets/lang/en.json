@@ -1,4 +1,10 @@
 {
+    "ar" : "Arabic",
+    "en" : "English",
+    "chooseLang" : "Choose Language",
+    "start_now" : "Start Now",
+    "skip" : "Skip",
+    "next" : "Next",
     "userType" : "User Type",
     "client" : "Client",
     "provider" : "Provider",

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maosul_advanced/core/cache/cache_helper.dart';
 import 'package:maosul_advanced/core/widgets/app_router.dart';
@@ -8,7 +9,8 @@ import '../../../../../core/constants/colors.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/app_text.dart';
 import '../../../../../generated/locale_keys.g.dart';
-import '../../../types/ui/types_view.dart';
+import '../../../languages/logic/lang_cubit.dart';
+import '../../../languages/ui/languages_view.dart';
 
 class IntroButtons extends StatelessWidget {
   final int index;
@@ -28,7 +30,13 @@ class IntroButtons extends StatelessWidget {
             ? AppButton(
                 onPressed: () {
                   CacheHelper.setShowIntro(true);
-                  AppRouter.navigateAndFinish(context, const TypesView());
+                  AppRouter.navigateAndFinish(
+                    context,
+                    BlocProvider(
+                      create: (context) => LangCubit(),
+                      child: const LanguagesView(),
+                    ),
+                  );
                 },
                 child: AppText(
                   text: LocaleKeys.start_now.tr(),
@@ -77,11 +85,15 @@ class IntroButtons extends StatelessWidget {
                             curve: Curves.fastOutSlowIn,
                           );
                         },
-                        child: AppText(
-                          end: 16.w,
-                          text: LocaleKeys.skip.tr(),
-                          size: 14.sp,
-                          color: Colors.black,
+                        child: SizedBox(
+                          width: 100.w,
+                          child: AppText(
+                            textAlign: TextAlign.end,
+                            end: 16.w,
+                            text: LocaleKeys.skip.tr(),
+                            size: 14.sp,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),

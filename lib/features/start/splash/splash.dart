@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maosul_advanced/core/widgets/app_router.dart';
 import 'package:maosul_advanced/features/start/on_boarding/ui/on_boarding.dart';
-import '../../gen/assets.gen.dart';
+import '../../../gen/assets.gen.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
