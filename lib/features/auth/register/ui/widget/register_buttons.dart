@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maosul_advanced/core/di/dependancy_injection.dart';
 import 'package:maosul_advanced/core/widgets/flash_message.dart';
 import 'package:maosul_advanced/features/auth/register/logic/register_cubit.dart';
 import '../../../../../core/constants/colors.dart';
@@ -9,6 +10,7 @@ import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/app_router.dart';
 import '../../../../../core/widgets/app_text.dart';
 import '../../../../../generated/locale_keys.g.dart';
+import '../../../otp/logic/otp_cubit.dart';
 import '../../../otp/ui/otp.dart';
 import '../../logic/register_state.dart';
 
@@ -38,7 +40,13 @@ class RegisterButtons extends StatelessWidget {
                   type: FlashMessageType.success,
                   context: context,
                 );
-                AppRouter.navigateTo(context, const Otp());
+                AppRouter.navigateTo(
+                  context,
+                  BlocProvider(
+                    create: (context) => OtpCubit(getIt()),
+                    child: const Otp(),
+                  ),
+                );
               },
               registerError: (error) => showFlashMessage(
                 message: error.message ?? '',

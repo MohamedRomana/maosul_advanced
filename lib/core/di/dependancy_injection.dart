@@ -2,7 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:maosul_advanced/features/auth/login/data/apis/login_api_service.dart';
 import 'package:maosul_advanced/features/auth/login/data/repos/login_repo.dart';
-
+import 'package:maosul_advanced/features/auth/otp/apis/otp_api_service.dart';
+import '../../features/auth/otp/data/repos/otp_repo.dart';
 import '../../features/auth/register/apis/register_api_service.dart';
 import '../../features/auth/register/data/repos/register_repo.dart';
 import '../networking/dio_factory.dart';
@@ -19,4 +20,8 @@ Future<void> setUpGetIt() async {
 // REGISTER
   getIt.registerLazySingleton<RegisterApiService>(()=> RegisterApiService(dio));
   getIt.registerLazySingleton<RegisterRepo>(() => RegisterRepo(getIt()));
+
+// OTP
+  getIt.registerLazySingleton<OtpApiService>(() => OtpApiService(dio));
+  getIt.registerLazySingleton<OtpRepo>(() => OtpRepo(getIt()));
 }

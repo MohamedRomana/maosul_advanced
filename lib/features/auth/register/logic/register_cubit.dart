@@ -41,6 +41,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       success: (registerResponse) {
         if (registerResponse.key == 1) {
           emit(RegisterState.registerSuccess(registerResponse));
+          CacheHelper.setUserId(registerResponse.data?.id.toString());
         } else {
           emit(
             RegisterState.registerError(

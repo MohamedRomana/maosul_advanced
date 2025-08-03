@@ -31,6 +31,7 @@ class LoginCubit extends Cubit<LoginState> {
       success: (loginResponse) async {
         if (loginResponse.key == 1) {
           emit(LoginState.loginSuccess(loginResponse));
+          CacheHelper.setUserId(loginResponse.data?.id.toString());
         } else {
           emit(
             LoginState.loginFailure(

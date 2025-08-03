@@ -1,12 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maosul_advanced/core/constants/colors.dart';
 import 'package:maosul_advanced/core/widgets/app_button.dart';
 import 'package:maosul_advanced/core/widgets/app_text.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../../../../core/widgets/flash_message.dart';
 import '../../../../generated/locale_keys.g.dart';
+import '../logic/otp_cubit.dart';
+import '../logic/otp_state.dart';
 import 'widgets/otp_logo_text.dart';
 
 class Otp extends StatefulWidget {
@@ -17,10 +21,9 @@ class Otp extends StatefulWidget {
 }
 
 class _OtpState extends State<Otp> {
-  String otpCode = "";
-
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<OtpCubit>();
     return Scaffold(
       backgroundColor: AppColors.primaryMedium,
       body: SafeArea(
@@ -59,21 +62,61 @@ class _OtpState extends State<Otp> {
                   animationDuration: const Duration(milliseconds: 300),
                   enableActiveFill: true,
                   onCompleted: (code) {
-                    otpCode = code;
+                    cubit.otpCode = code;
                     debugPrint("Completed");
                   },
                   onChanged: (value) {
                     debugPrint(value);
                   },
                 ),
-                AppButton(
-                  top: 30.h,
-                  onPressed: () {},
-                  child: AppText(
-                    text: LocaleKeys.save.tr(),
-                    size: 16.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
+                BlocListener<OtpCubit, OtpState>(
+                  listenWhen: (previous, current) =>
+                      current is OtpError ||
+                      current is OtpSuccess ||
+                      current is OtpLoading,
+                  listener: (context, state) {
+                    state.whenOrNull(
+                      otpLoading: () => showDialog(
+                        context: context,
+                        builder: (context) => const Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primary,
+                          ),
+                        ),
+                      ),
+                      otpSuccess: (data) {
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        showFlashMessage(
+                          message: data.msg ?? '',
+                          type: FlashMessageType.success,
+                          context: context,
+                        );
+                      },
+                      otpError: (error) {
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        showFlashMessage(
+                          message: error.message ?? '',
+                          type: FlashMessageType.error,
+                          context: context,
+                        );
+                      },
+                    );
+                  },
+                  child: AppButton(
+                    top: 30.h,
+                    onPressed: () {
+                      cubit.sendOtp();
+                    },
+                    child: AppText(
+                      text: LocaleKeys.save.tr(),
+                      size: 16.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ],
