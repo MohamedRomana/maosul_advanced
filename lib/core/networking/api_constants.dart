@@ -4,4 +4,5 @@ class ApiConstants {
   static const String register = 'api/register';
   static const String otp = 'api/active-account';
   static const String forgetPass = 'api/forget-password';
+  static const String resetPass = 'api/reset-password';
 }

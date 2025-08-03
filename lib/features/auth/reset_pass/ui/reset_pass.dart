@@ -1,29 +1,26 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maosul_advanced/features/auth/reset_pass/ui/widgets/reset_pass_fields.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_text.dart';
+import '../../../../core/widgets/flash_message.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../generated/locale_keys.g.dart';
+import '../logic/reset_pass_cubit.dart';
+import '../logic/reset_pass_state.dart';
 
-final _formKey = GlobalKey<FormState>();
-final _passwordController = TextEditingController();
 final _confirmPasswordController = TextEditingController();
 
-class ResetPass extends StatefulWidget {
+class ResetPass extends StatelessWidget {
   const ResetPass({super.key});
 
   @override
-  State<ResetPass> createState() => _ResetPassState();
-}
-
-class _ResetPassState extends State<ResetPass> {
-  String otpCode = "";
-  @override
   Widget build(BuildContext context) {
+    final cubit = context.read<ResetPassCubit>();
     return Scaffold(
       backgroundColor: AppColors.primaryMedium,
       body: SafeArea(
@@ -87,7 +84,7 @@ class _ResetPassState extends State<ResetPass> {
                   animationDuration: const Duration(milliseconds: 300),
                   enableActiveFill: true,
                   onCompleted: (code) {
-                    otpCode = code;
+                    cubit.code = code;
                     debugPrint("Completed");
                   },
                   onChanged: (value) {
@@ -95,19 +92,47 @@ class _ResetPassState extends State<ResetPass> {
                   },
                 ),
                 ResetPassFields(
-                  formKey: _formKey,
-                  passwordController: _passwordController,
                   confirmPasswordController: _confirmPasswordController,
                 ),
-                AppButton(
-                  top: 30.h,
-                  onPressed: () {},
-                  child: AppText(
-                    text: LocaleKeys.save.tr(),
-                    size: 16.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                  ),
+                BlocConsumer<ResetPassCubit, ResetPassState>(
+                  listenWhen: (previous, current) =>
+                      current is ResetPassLoading ||
+                      current is ResetPassSuccess ||
+                      current is ResetPassError,
+                  listener: (context, state) {
+                    state.whenOrNull(
+                      resetPassSuccess: (resetPassResponse) {
+                        showFlashMessage(
+                          message: resetPassResponse.msg ?? '',
+                          type: FlashMessageType.success,
+                          context: context,
+                        );
+                      },
+                      resetPassError: (error) {
+                        showFlashMessage(
+                          message: error.message ?? '',
+                          type: FlashMessageType.error,
+                          context: context,
+                        );
+                      },
+                    );
+                  },
+                  builder: (context, state) {
+                    return AppButton(
+                      top: 30.h,
+                      onPressed: () {
+                        cubit.resetPass();
+                      },
+                      child: const ResetPassState.resetPassLoading() == state
+                          ? const CircularProgressIndicator(color: Colors.white)
+                          : AppText(
+                              text: LocaleKeys.save.tr(),
+                              size: 16.sp,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                    );
+                  },
                 ),
               ],
             ),

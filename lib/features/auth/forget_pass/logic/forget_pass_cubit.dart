@@ -15,6 +15,7 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
   final formKey = GlobalKey<FormState>();
   TextEditingController phoneController = TextEditingController();
   String forgetCode = '966';
+  String resetPassUserId = '';
 
   void forgetPass() async {
     emit(const ForgetPassState.forgetPassLoading());
@@ -29,6 +30,7 @@ class ForgetPassCubit extends Cubit<ForgetPassState> {
       success: (forgetPassResponse) {
         if (forgetPassResponse.key == 1) {
           emit(ForgetPassState.forgetPassSuccess(forgetPassResponse));
+          resetPassUserId = forgetPassResponse.data!.id.toString();
         } else {
           emit(
             ForgetPassState.forgetPassError(

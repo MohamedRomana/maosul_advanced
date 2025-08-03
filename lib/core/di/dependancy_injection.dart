@@ -4,10 +4,12 @@ import 'package:maosul_advanced/features/auth/forget_pass/apis/forget_pass_api_s
 import 'package:maosul_advanced/features/auth/login/data/apis/login_api_service.dart';
 import 'package:maosul_advanced/features/auth/login/data/repos/login_repo.dart';
 import 'package:maosul_advanced/features/auth/otp/apis/otp_api_service.dart';
+import 'package:maosul_advanced/features/auth/reset_pass/apis/reset_pass_api_service.dart';
 import '../../features/auth/forget_pass/data/repos/forget_pass_repo.dart';
 import '../../features/auth/otp/data/repos/otp_repo.dart';
 import '../../features/auth/register/apis/register_api_service.dart';
 import '../../features/auth/register/data/repos/register_repo.dart';
+import '../../features/auth/reset_pass/data/repos/reset_pass_repo.dart';
 import '../networking/dio_factory.dart';
 
 final getIt = GetIt.instance;
@@ -30,4 +32,8 @@ Future<void> setUpGetIt() async {
 // FORGET PASS
   getIt.registerLazySingleton<ForgetPassApiService>(() => ForgetPassApiService(dio));
   getIt.registerLazySingleton<ForgetPassRepo>(() => ForgetPassRepo(getIt()));
+  
+// RESET PASS
+  getIt.registerLazySingleton<ResetPassApiService>(() => ResetPassApiService(dio));
+  getIt.registerLazySingleton<ResetPassRepo>(() => ResetPassRepo(getIt()));
 }

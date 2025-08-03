@@ -1,20 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/widgets/app_input.dart';
 import '../../../../../generated/locale_keys.g.dart';
+import '../../logic/reset_pass_cubit.dart';
 
 class ResetPassFields extends StatefulWidget {
-  final GlobalKey<FormState> formKey;
-  final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
   const ResetPassFields({
     super.key,
-    required this.passwordController,
     required this.confirmPasswordController,
-    required this.formKey,
   });
 
   @override
@@ -26,8 +24,9 @@ class _ResetPassFieldsState extends State<ResetPassFields> {
   bool isConfirmPassSequre = true;
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<ResetPassCubit>();
     return Form(
-      key: widget.formKey,
+      key: cubit.formKey,
       child: Column(
         children: [
           AppInput(
@@ -49,7 +48,7 @@ class _ResetPassFieldsState extends State<ResetPassFields> {
               },
             ),
             hint: LocaleKeys.password.tr(),
-            controller: widget.passwordController,
+            controller: cubit.passwordController,
             validate: (value) {
               if (value!.isEmpty) {
                 return LocaleKeys.password_required.tr();
@@ -78,8 +77,8 @@ class _ResetPassFieldsState extends State<ResetPassFields> {
             hint: LocaleKeys.confirmPassword.tr(),
             controller: widget.confirmPasswordController,
             validate: (value) {
-              if (value!.isEmpty) {
-                return LocaleKeys.confirmPassword.tr();
+              if (cubit.passwordController.text != value) {
+                return LocaleKeys.password_mismatch.tr();
               }
               return null;
             },

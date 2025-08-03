@@ -2,10 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maosul_advanced/core/di/dependancy_injection.dart';
 import 'package:maosul_advanced/core/widgets/app_button.dart';
 import 'package:maosul_advanced/core/widgets/app_router.dart';
 import 'package:maosul_advanced/core/widgets/app_text.dart';
 import 'package:maosul_advanced/features/auth/forget_pass/logic/forget_pass_cubit.dart';
+import 'package:maosul_advanced/features/auth/reset_pass/logic/reset_pass_cubit.dart';
 import 'package:maosul_advanced/features/auth/reset_pass/ui/reset_pass.dart';
 import '../../../../../core/widgets/flash_message.dart';
 import '../../../../../generated/locale_keys.g.dart';
@@ -29,7 +31,16 @@ class ForgetPassButtons extends StatelessWidget {
               type: FlashMessageType.success,
               context: context,
             );
-            AppRouter.navigateTo(context, const ResetPass());
+            AppRouter.navigateTo(
+              context,
+              BlocProvider(
+                create: (context) => ResetPassCubit(
+                  getIt(),
+                  userId: forgetPassResponse.data!.id.toString(),
+                ),
+                child: const ResetPass(),
+              ),
+            );
           },
           forgetPassError: (error) {
             showFlashMessage(
