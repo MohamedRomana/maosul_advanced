@@ -2,9 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maosul_advanced/core/di/dependancy_injection.dart';
 import 'package:maosul_advanced/core/widgets/app_router.dart';
 import 'package:maosul_advanced/core/widgets/flash_message.dart';
 import 'package:maosul_advanced/features/auth/login/logic/login_state.dart';
+import 'package:maosul_advanced/features/auth/register/logic/register_cubit.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/app_text.dart';
@@ -27,9 +29,15 @@ class LoginButtons extends StatelessWidget {
       listener: (context, state) {
         state.whenOrNull(
           loginLoading: () {
-            const SizedBox.shrink();
+            showDialog(
+              context: context,
+              builder: (context) => const Center(
+                child: CircularProgressIndicator(color: AppColors.primary),
+              ),
+            );
           },
           loginSuccess: (data) {
+            Navigator.pop(context);
             showFlashMessage(
               message: data.msg ?? '',
               type: FlashMessageType.success,
@@ -37,6 +45,7 @@ class LoginButtons extends StatelessWidget {
             );
           },
           loginFailure: (error) {
+            Navigator.pop(context);
             showFlashMessage(
               message: error.message ?? '',
               type: FlashMessageType.error,
@@ -76,7 +85,13 @@ class LoginButtons extends StatelessWidget {
           SizedBox(height: 24.h),
           TextButton(
             onPressed: () {
-              AppRouter.navigateTo(context, const Register());
+              AppRouter.navigateTo(
+                context,
+                BlocProvider(
+                  create: (context) => RegisterCubit(getIt()),
+                  child: const Register(),
+                ),
+              );
             },
             child: AppText(
               text: LocaleKeys.newUser.tr(),

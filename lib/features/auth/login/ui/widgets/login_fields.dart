@@ -30,6 +30,7 @@ class _LoginFieldsState extends State<LoginFields> {
             color: Colors.white,
             hint: LocaleKeys.phone.tr(),
             controller: cubit.phoneController,
+            inputType: TextInputType.phone,
             prefixIcon: SizedBox(
               width: 130.w,
               child: FittedBox(

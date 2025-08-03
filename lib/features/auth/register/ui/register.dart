@@ -5,14 +5,7 @@ import 'widget/register_buttons.dart';
 import 'widget/register_fields.dart';
 import 'widget/register_logo_text.dart';
 
-final _formKey = GlobalKey<FormState>();
-final _nameController = TextEditingController();
-final _emailController = TextEditingController();
-final _phoneController = TextEditingController();
-final locationController = TextEditingController();
-final _passwordController = TextEditingController();
 final _confirmPasswordController = TextEditingController();
-String registerCode = '';
 
 class Register extends StatelessWidget {
   const Register({super.key});
@@ -36,12 +29,6 @@ class Register extends StatelessWidget {
               children: [
                 const RegisterLogoText(),
                 RegisterFields(
-                  formKey: _formKey,
-                  nameController: _nameController,
-                  emailController: _emailController,
-                  phoneController: _phoneController,
-                  locationController: locationController,
-                  passwordController: _passwordController,
                   confirmPasswordController: _confirmPasswordController,
                 ),
                 const RegisterButtons(),

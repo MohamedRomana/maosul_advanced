@@ -9,26 +9,11 @@ import 'package:maosul_advanced/core/widgets/app_input.dart';
 import 'package:maosul_advanced/generated/locale_keys.g.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/map/map.dart';
-import '../register.dart';
+import '../../logic/register_cubit.dart';
 
 class RegisterFields extends StatefulWidget {
-  final GlobalKey<FormState> formKey;
-  final TextEditingController nameController;
-  final TextEditingController emailController;
-  final TextEditingController phoneController;
-  final TextEditingController locationController;
-  final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
-  const RegisterFields({
-    super.key,
-    required this.formKey,
-    required this.nameController,
-    required this.emailController,
-    required this.phoneController,
-    required this.locationController,
-    required this.passwordController,
-    required this.confirmPasswordController,
-  });
+  const RegisterFields({super.key, required this.confirmPasswordController});
 
   @override
   State<RegisterFields> createState() => _RegisterFieldsState();
@@ -39,8 +24,9 @@ class _RegisterFieldsState extends State<RegisterFields> {
   bool isConfirmPassSequre = true;
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<RegisterCubit>();
     return Form(
-      key: widget.formKey,
+      key: cubit.formKey,
       child: Column(
         children: [
           AppInput(
@@ -52,7 +38,7 @@ class _RegisterFieldsState extends State<RegisterFields> {
               size: 24.sp,
             ),
             hint: LocaleKeys.userName.tr(),
-            controller: widget.nameController,
+            controller: cubit.nameController,
             validate: (value) {
               if (value!.isEmpty) {
                 return LocaleKeys.name.tr();
@@ -65,7 +51,7 @@ class _RegisterFieldsState extends State<RegisterFields> {
             filled: true,
             color: Colors.white,
             inputType: TextInputType.phone,
-            controller: widget.phoneController,
+            controller: cubit.phoneController,
             prefixIcon: SizedBox(
               width: 130.w,
               child: FittedBox(
@@ -79,8 +65,8 @@ class _RegisterFieldsState extends State<RegisterFields> {
                         sortComparator: (Country a, Country b) =>
                             a.isoCode.compareTo(b.isoCode),
                         onValuePicked: (Country country) {
-                          registerCode = country.phoneCode;
-                          debugPrint(registerCode);
+                          cubit.registerCode = country.phoneCode;
+                          debugPrint(cubit.registerCode);
                         },
                       ),
                     ),
@@ -104,7 +90,7 @@ class _RegisterFieldsState extends State<RegisterFields> {
             },
           ),
           AppInput(
-            controller: widget.emailController,
+            controller: cubit.emailController,
             top: 16.h,
             filled: true,
             color: Colors.white,
@@ -127,12 +113,19 @@ class _RegisterFieldsState extends State<RegisterFields> {
             color: Colors.white,
             read: true,
             onTap: () {
+              final registerCubit = context.read<RegisterCubit>();
+
               showModalBottomSheet(
                 context: context,
-                builder: (context) => BlocProvider(
-                  create: (context) => MapCubit(),
-                  child: const Location(),
-                ),
+                builder: (context) {
+                  return MultiBlocProvider(
+                    providers: [
+                      BlocProvider(create: (_) => MapCubit()),
+                      BlocProvider.value(value: registerCubit),
+                    ],
+                    child: const Location(),
+                  );
+                },
               );
             },
             prefixIcon: Icon(
@@ -141,7 +134,7 @@ class _RegisterFieldsState extends State<RegisterFields> {
               size: 24.sp,
             ),
             hint: LocaleKeys.confirm_location.tr(),
-            controller: widget.locationController,
+            controller: cubit.locationController,
             validate: (value) {
               if (value!.isEmpty) {
                 return LocaleKeys.location_required.tr();
@@ -168,7 +161,7 @@ class _RegisterFieldsState extends State<RegisterFields> {
               },
             ),
             hint: LocaleKeys.password.tr(),
-            controller: widget.passwordController,
+            controller: cubit.passwordController,
             validate: (value) {
               if (value!.isEmpty) {
                 return LocaleKeys.password_required.tr();
@@ -197,8 +190,8 @@ class _RegisterFieldsState extends State<RegisterFields> {
             hint: LocaleKeys.confirmPassword.tr(),
             controller: widget.confirmPasswordController,
             validate: (value) {
-              if (value!.isEmpty) {
-                return LocaleKeys.confirmPassword.tr();
+              if (cubit.passwordController.text != value) {
+                return LocaleKeys.password_mismatch.tr();
               }
               return null;
             },

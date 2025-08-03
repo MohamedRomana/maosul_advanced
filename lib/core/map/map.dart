@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../../features/auth/register/ui/register.dart';
+import '../../features/auth/register/logic/register_cubit.dart';
 import '../../gen/fonts.gen.dart';
 import '../constants/colors.dart';
 import '../widgets/app_button.dart';
@@ -76,12 +76,14 @@ class _LocationState extends State<Location> {
                       context.read<MapCubit>().changeAddress(
                         newAddress: placeMarkes[0].street ?? '',
                       );
-                      locationController.text =
+                      context.read<RegisterCubit>().locationController.text =
                           context.read<MapCubit>().address ?? "";
                       debugPrint(context.read<MapCubit>().address);
                       setState(() {
-                        context.read<MapCubit>().lat = argument.latitude;
-                        context.read<MapCubit>().lng = argument.longitude;
+                        context.read<RegisterCubit>().lat =
+                            context.read<MapCubit>().lat = argument.latitude;
+                        context.read<RegisterCubit>().lng =
+                            context.read<MapCubit>().lng = argument.longitude;
                         debugPrint(
                           '${context.read<MapCubit>().lat} + ${context.read<MapCubit>().lng}',
                         );
@@ -107,10 +109,19 @@ class _LocationState extends State<Location> {
                             context.read<MapCubit>().changeAddress(
                               newAddress: placeMarks[0].street ?? '',
                             );
-                            context.read<MapCubit>().lat = position!.latitude;
-                            context.read<MapCubit>().lng = position!.longitude;
+                            context
+                                .read<RegisterCubit>()
+                                .lat = context.read<MapCubit>().lat =
+                                position!.latitude;
+                            context
+                                .read<RegisterCubit>()
+                                .lng = context.read<MapCubit>().lng =
+                                position!.longitude;
 
-                            locationController.text =
+                            context
+                                    .read<RegisterCubit>()
+                                    .locationController
+                                    .text =
                                 context.read<MapCubit>().address ?? "";
 
                             debugPrint(context.read<MapCubit>().address);
@@ -162,8 +173,13 @@ class _LocationState extends State<Location> {
                           context.read<MapCubit>().address = null;
                           context.read<MapCubit>().lat = null;
                           context.read<MapCubit>().lng = null;
-
-                          locationController.clear();
+                          context.read<RegisterCubit>().lat = 0.0;
+                          context.read<RegisterCubit>().lng = 0.0;
+                          context
+                                  .read<RegisterCubit>()
+                                  .locationController
+                                  .text =
+                              "";
 
                           myMarkers.clear();
                         });
