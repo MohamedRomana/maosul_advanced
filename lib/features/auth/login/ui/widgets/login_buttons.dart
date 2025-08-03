@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maosul_advanced/core/di/dependancy_injection.dart';
 import 'package:maosul_advanced/core/widgets/app_router.dart';
 import 'package:maosul_advanced/core/widgets/flash_message.dart';
+import 'package:maosul_advanced/features/auth/forget_pass/logic/forget_pass_cubit.dart';
 import 'package:maosul_advanced/features/auth/login/logic/login_state.dart';
 import 'package:maosul_advanced/features/auth/register/logic/register_cubit.dart';
 import '../../../../../core/constants/colors.dart';
@@ -74,7 +75,13 @@ class LoginButtons extends StatelessWidget {
           SizedBox(height: 27.h),
           TextButton(
             onPressed: () {
-              AppRouter.navigateTo(context, const ForgetPass());
+              AppRouter.navigateTo(
+                context,
+                BlocProvider(
+                  create: (context) => ForgetPassCubit(getIt()),
+                  child: const ForgetPass(),
+                ),
+              );
             },
             child: AppText(
               text: LocaleKeys.forgotPassword.tr(),

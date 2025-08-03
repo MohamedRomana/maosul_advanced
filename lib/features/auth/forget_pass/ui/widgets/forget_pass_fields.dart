@@ -2,31 +2,27 @@ import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_pickers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maosul_advanced/core/widgets/app_input.dart';
-
 import '../../../../../core/constants/colors.dart';
 import '../../../../../generated/locale_keys.g.dart';
-import '../forget_pass.dart';
+import '../../logic/forget_pass_cubit.dart';
 
 class ForgetPassFields extends StatelessWidget {
-  final GlobalKey<FormState> formKey;
-  final TextEditingController phoneController;
-  const ForgetPassFields({
-    super.key,
-    required this.formKey,
-    required this.phoneController,
-  });
+  const ForgetPassFields({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<ForgetPassCubit>();
     return Form(
+      key: cubit.formKey,
       child: AppInput(
         top: 16.h,
         filled: true,
         color: Colors.white,
         inputType: TextInputType.phone,
-        controller: phoneController,
+        controller: cubit.phoneController,
         prefixIcon: SizedBox(
           width: 130.w,
           child: FittedBox(
@@ -40,8 +36,8 @@ class ForgetPassFields extends StatelessWidget {
                     sortComparator: (Country a, Country b) =>
                         a.isoCode.compareTo(b.isoCode),
                     onValuePicked: (Country country) {
-                      forgetCode = country.phoneCode;
-                      debugPrint(forgetCode);
+                      cubit.forgetCode = country.phoneCode;
+                      debugPrint(cubit.forgetCode);
                     },
                   ),
                 ),

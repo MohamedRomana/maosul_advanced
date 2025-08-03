@@ -5,10 +5,6 @@ import 'widgets/forget_pass_buttons.dart';
 import 'widgets/forget_pass_fields.dart';
 import 'widgets/forget_pass_logo_text.dart';
 
-final _formKey = GlobalKey<FormState>();
-final _phoneController = TextEditingController();
-String forgetCode = '';
-
 class ForgetPass extends StatelessWidget {
   const ForgetPass({super.key});
 
@@ -26,14 +22,11 @@ class ForgetPass extends StatelessWidget {
               top: 50.h,
               bottom: 32.h,
             ),
-            child: Column(
+            child: const Column(
               children: [
-                const ForgetPassLogoText(),
-                ForgetPassFields(
-                  formKey: _formKey,
-                  phoneController: _phoneController,
-                ),
-                const ForgetPassButtons(),
+                ForgetPassLogoText(),
+                ForgetPassFields(),
+                ForgetPassButtons(),
               ],
             ),
           ),
