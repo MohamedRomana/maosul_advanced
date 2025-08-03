@@ -338,12 +338,12 @@ $ResetPassErrorCopyWith<T, ResetPassError<T>> get copyWith => _$ResetPassErrorCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResetPassError<T>&&const DeepCollectionEquality().equals(other.error, error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResetPassError<T>&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(error));
+int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
@@ -375,9 +375,9 @@ class _$ResetPassErrorCopyWithImpl<T,$Res>
 
 /// Create a copy of ResetPassState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? error = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(ResetPassError<T>(
-freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ApiErrorModel,
   ));
 }

@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: unused_element
-
 part of 'reset_pass_response_model.dart';
 
 // **************************************************************************
@@ -16,6 +14,7 @@ ResetPassResponseModel _$ResetPassResponseModelFromJson(
   showImage: json['show_image'] as bool?,
 );
 
+// ignore: unused_element
 Map<String, dynamic> _$ResetPassResponseModelToJson(
   ResetPassResponseModel instance,
 ) => <String, dynamic>{

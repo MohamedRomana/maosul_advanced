@@ -2,18 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:maosul_advanced/core/di/dependancy_injection.dart';
-import 'package:maosul_advanced/core/widgets/app_router.dart';
+import 'package:maosul_advanced/core/helper/extentions.dart';
 import 'package:maosul_advanced/core/widgets/flash_message.dart';
-import 'package:maosul_advanced/features/auth/forget_pass/logic/forget_pass_cubit.dart';
 import 'package:maosul_advanced/features/auth/login/logic/login_state.dart';
-import 'package:maosul_advanced/features/auth/register/logic/register_cubit.dart';
 import '../../../../../core/constants/colors.dart';
+import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/app_text.dart';
 import '../../../../../generated/locale_keys.g.dart';
-import '../../../forget_pass/ui/forget_pass.dart';
-import '../../../register/ui/register.dart';
 import '../../logic/login_cubit.dart';
 
 class LoginButtons extends StatelessWidget {
@@ -75,13 +71,7 @@ class LoginButtons extends StatelessWidget {
           SizedBox(height: 27.h),
           TextButton(
             onPressed: () {
-              AppRouter.navigateTo(
-                context,
-                BlocProvider(
-                  create: (context) => ForgetPassCubit(getIt()),
-                  child: const ForgetPass(),
-                ),
-              );
+             context.pushNamed(Routes.forgetPass);
             },
             child: AppText(
               text: LocaleKeys.forgotPassword.tr(),
@@ -92,13 +82,7 @@ class LoginButtons extends StatelessWidget {
           SizedBox(height: 24.h),
           TextButton(
             onPressed: () {
-              AppRouter.navigateTo(
-                context,
-                BlocProvider(
-                  create: (context) => RegisterCubit(getIt()),
-                  child: const Register(),
-                ),
-              );
+              context.pushNamed(Routes.register);
             },
             child: AppText(
               text: LocaleKeys.newUser.tr(),

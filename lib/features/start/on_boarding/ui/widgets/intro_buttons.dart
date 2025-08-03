@@ -1,15 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maosul_advanced/core/cache/cache_helper.dart';
-import 'package:maosul_advanced/core/widgets/app_router.dart';
+import 'package:maosul_advanced/core/helper/extentions.dart';
 import '../../../../../core/constants/colors.dart';
+import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/app_text.dart';
 import '../../../../../generated/locale_keys.g.dart';
-import '../../../languages/logic/lang_cubit.dart';
-import '../../../languages/ui/languages_view.dart';
 
 class IntroButtons extends StatelessWidget {
   final int index;
@@ -29,13 +27,7 @@ class IntroButtons extends StatelessWidget {
             ? AppButton(
                 onPressed: () {
                   CacheHelper.setShowIntro(true);
-                  AppRouter.navigateAndFinish(
-                    context,
-                    BlocProvider(
-                      create: (context) => LangCubit(),
-                      child: const LanguagesView(),
-                    ),
-                  );
+                 context.pushNamed(Routes.languages);
                 },
                 child: AppText(
                   text: LocaleKeys.start_now.tr(),

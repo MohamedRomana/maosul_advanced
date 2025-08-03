@@ -7,11 +7,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:maosul_advanced/core/helper/extentions.dart';
 import '../../features/auth/register/logic/register_cubit.dart';
 import '../../gen/fonts.gen.dart';
 import '../constants/colors.dart';
 import '../widgets/app_button.dart';
-import '../widgets/app_router.dart';
 import '../widgets/app_text.dart';
 import 'location_helper.dart';
 import 'logic/cubit/map_cubit.dart';
@@ -157,7 +157,7 @@ class _LocationState extends State<Location> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        AppRouter.pop(context);
+                        context.pop();
                       },
                     ),
                   ),

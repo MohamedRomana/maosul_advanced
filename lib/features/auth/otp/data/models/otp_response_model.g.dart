@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: unused_element
-
 part of 'otp_response_model.dart';
 
 // **************************************************************************
@@ -15,6 +13,7 @@ OtpResponseModel _$OtpResponseModelFromJson(Map<String, dynamic> json) =>
       showImage: json['show_image'] as bool?,
     );
 
+// ignore: unused_element
 Map<String, dynamic> _$OtpResponseModelToJson(OtpResponseModel instance) =>
     <String, dynamic>{
       'msg': instance.msg,

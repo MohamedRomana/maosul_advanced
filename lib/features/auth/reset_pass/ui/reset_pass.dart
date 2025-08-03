@@ -2,9 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maosul_advanced/core/helper/extentions.dart';
 import 'package:maosul_advanced/features/auth/reset_pass/ui/widgets/reset_pass_fields.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../core/constants/colors.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/flash_message.dart';
@@ -102,6 +104,7 @@ class ResetPass extends StatelessWidget {
                   listener: (context, state) {
                     state.whenOrNull(
                       resetPassSuccess: (resetPassResponse) {
+                        context.pushReplacementNamed(Routes.login);
                         showFlashMessage(
                           message: resetPassResponse.msg ?? '',
                           type: FlashMessageType.success,
@@ -109,6 +112,7 @@ class ResetPass extends StatelessWidget {
                         );
                       },
                       resetPassError: (error) {
+                        context.pushReplacementNamed(Routes.login);
                         showFlashMessage(
                           message: error.message ?? '',
                           type: FlashMessageType.error,
