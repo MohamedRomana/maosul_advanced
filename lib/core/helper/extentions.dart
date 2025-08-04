@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-extension Navigation on BuildContext {
+extension NavigationExtension on BuildContext {
   Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
     return Navigator.of(this).pushNamed(routeName, arguments: arguments);
   }
@@ -16,11 +16,9 @@ extension Navigation on BuildContext {
     Object? arguments,
     required RoutePredicate predicate,
   }) {
-    return Navigator.of(this).pushNamedAndRemoveUntil(
-      routeName,
-      (route) => false,
-      arguments: arguments,
-    );
+    return Navigator.of(
+      this,
+    ).pushNamedAndRemoveUntil(routeName, predicate, arguments: arguments);
   }
 
   void pop() {

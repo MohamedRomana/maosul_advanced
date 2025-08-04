@@ -17,23 +17,29 @@ final getIt = GetIt.instance;
 Future<void> setUpGetIt() async {
   Dio dio = DioFactory.getDio();
 
-// LOGIN
+  // LOGIN
   getIt.registerLazySingleton<LoginApiService>(() => LoginApiService(dio));
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
 
-// REGISTER
-  getIt.registerLazySingleton<RegisterApiService>(()=> RegisterApiService(dio));
+  // REGISTER
+  getIt.registerLazySingleton<RegisterApiService>(
+    () => RegisterApiService(dio),
+  );
   getIt.registerLazySingleton<RegisterRepo>(() => RegisterRepo(getIt()));
 
-// OTP
+  // OTP
   getIt.registerLazySingleton<OtpApiService>(() => OtpApiService(dio));
   getIt.registerLazySingleton<OtpRepo>(() => OtpRepo(getIt()));
 
-// FORGET PASS
-  getIt.registerLazySingleton<ForgetPassApiService>(() => ForgetPassApiService(dio));
+  // FORGET PASS
+  getIt.registerLazySingleton<ForgetPassApiService>(
+    () => ForgetPassApiService(dio),
+  );
   getIt.registerLazySingleton<ForgetPassRepo>(() => ForgetPassRepo(getIt()));
-  
-// RESET PASS
-  getIt.registerLazySingleton<ResetPassApiService>(() => ResetPassApiService(dio));
+
+  // RESET PASS
+  getIt.registerLazySingleton<ResetPassApiService>(
+    () => ResetPassApiService(dio),
+  );
   getIt.registerLazySingleton<ResetPassRepo>(() => ResetPassRepo(getIt()));
 }

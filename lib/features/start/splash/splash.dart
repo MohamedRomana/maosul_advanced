@@ -41,7 +41,9 @@ void _customNavigator(BuildContext context) {
     CacheHelper.getShowIntro() != false
         ? CacheHelper.getLang() != ""
               ? CacheHelper.getUserType() != ""
-                    ? context.pushReplacementNamed(Routes.login)
+                    ? CacheHelper.getUserId() != ""
+                          ? context.pushReplacementNamed(Routes.homeLayout)
+                          : context.pushReplacementNamed(Routes.login)
                     : context.pushReplacementNamed(Routes.types)
               : context.pushReplacementNamed(Routes.languages)
         : context.pushReplacementNamed(Routes.onBoarding);

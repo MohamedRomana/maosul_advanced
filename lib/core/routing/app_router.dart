@@ -10,6 +10,7 @@ import 'package:maosul_advanced/features/auth/register/logic/register_cubit.dart
 import 'package:maosul_advanced/features/auth/reset_pass/logic/reset_pass_cubit.dart';
 import 'package:maosul_advanced/features/start/languages/logic/lang_cubit.dart';
 import 'package:maosul_advanced/features/start/types/logic/types_cubit.dart';
+import 'package:maosul_advanced/features/users/home_layout/logic/cubit/home_layout_cubit.dart';
 import '../../features/auth/forget_pass/ui/forget_pass.dart';
 import '../../features/auth/login/ui/log_in.dart';
 import '../../features/auth/otp/ui/otp.dart';
@@ -18,10 +19,10 @@ import '../../features/auth/reset_pass/ui/reset_pass.dart';
 import '../../features/start/languages/ui/languages_view.dart';
 import '../../features/start/splash/splash.dart';
 import '../../features/start/types/ui/types_view.dart';
+import '../../features/users/home_layout/home_layout.dart';
 import 'routes.dart';
 
 class AppRouter {
-
   Route? onGenerateRoute(RouteSettings settings) {
     final argument = settings.arguments;
 
@@ -71,11 +72,18 @@ class AppRouter {
           ),
         );
       case Routes.resetPass:
-      final userId = argument as String;
+        final userId = argument as String;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => ResetPassCubit(getIt(), userId: userId),
             child: const ResetPass(),
+          ),
+        );
+      case Routes.homeLayout:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => HomeLayoutCubit(),
+            child: const HomeLayout(),
           ),
         );
       default:

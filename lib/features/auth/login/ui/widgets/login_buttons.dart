@@ -34,7 +34,11 @@ class LoginButtons extends StatelessWidget {
             );
           },
           loginSuccess: (data) {
-            Navigator.pop(context);
+            context.pop();
+            context.pushNamedAndRemoveUntil(
+              Routes.homeLayout,
+              predicate: (_) => false,
+            );
             showFlashMessage(
               message: data.msg ?? '',
               type: FlashMessageType.success,
@@ -68,10 +72,11 @@ class LoginButtons extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
+
           SizedBox(height: 27.h),
           TextButton(
             onPressed: () {
-             context.pushNamed(Routes.forgetPass);
+              context.pushNamed(Routes.forgetPass);
             },
             child: AppText(
               text: LocaleKeys.forgotPassword.tr(),

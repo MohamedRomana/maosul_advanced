@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maosul_advanced/core/di/dependancy_injection.dart';
+import 'package:maosul_advanced/core/routing/app_router.dart';
 import 'core/constants/colors.dart';
 import 'core/cache/cache_helper.dart';
 import 'core/map/location_helper.dart';
+import 'core/routing/routes.dart';
 import 'features/start/splash/splash.dart';
 import 'gen/fonts.gen.dart';
 import 'generated/codegen_loader.g.dart';
@@ -40,13 +42,14 @@ void main() async {
       fallbackLocale: Locale(
         CacheHelper.getLang() == "" ? "ar" : CacheHelper.getLang(),
       ),
-      child: const MyApp(),
+      child: MyApp(appRouter: AppRouter()),
     ),
   );
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  final AppRouter appRouter;
+  const MyApp({super.key, required this.appRouter});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -86,6 +89,8 @@ class _MyAppState extends State<MyApp> {
             locale: context.locale,
             navigatorKey: navigatorKey,
             home: child,
+            onGenerateRoute: widget.appRouter.onGenerateRoute,
+            initialRoute: Routes.splash,
           ),
         );
       },
