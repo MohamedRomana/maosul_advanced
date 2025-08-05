@@ -17,7 +17,9 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   void initState() {
-    _customNavigator(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _customNavigator(context);
+    });
     super.initState();
   }
 

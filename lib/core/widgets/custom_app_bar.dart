@@ -1,7 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:maosul_advanced/features/users/home_layout/screens/home/logic/cubit/home_cubit.dart';
+import '../../features/users/home_layout/screens/home/logic/cubit/home_state.dart';
 import '../../gen/assets.gen.dart';
 import '../../generated/locale_keys.g.dart';
 import '../constants/colors.dart';
@@ -50,19 +53,26 @@ class CustomAppBar extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 140.w,
-                        child: AppText(
-                          textAlign: TextAlign.end,
-                          text: 'المملكة العربية الملز - الرياض',
-                          size: 12.sp,
-                          end: 6.w,
-                        ),
-                      ),
-                      const Icon(Icons.location_on, color: AppColors.primary),
-                    ],
+                  BlocBuilder<HomeCubit, HomeState>(
+                    builder: (context, state) {
+                      return Row(
+                        children: [
+                          SizedBox(
+                            width: 140.w,
+                            child: AppText(
+                              textAlign: TextAlign.end,
+                              text: context.read<HomeCubit>().homeAddress,
+                              size: 12.sp,
+                              end: 6.w,
+                            ),
+                          ),
+                          const Icon(
+                            Icons.location_on,
+                            color: AppColors.primary,
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ],
               ),

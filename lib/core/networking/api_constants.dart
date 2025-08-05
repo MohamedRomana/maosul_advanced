@@ -5,4 +5,5 @@ class ApiConstants {
   static const String otp = 'api/active-account';
   static const String forgetPass = 'api/forget-password';
   static const String resetPass = 'api/reset-password';
+  static const String home = 'api/home';
 }

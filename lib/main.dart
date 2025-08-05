@@ -9,7 +9,6 @@ import 'core/constants/colors.dart';
 import 'core/cache/cache_helper.dart';
 import 'core/map/location_helper.dart';
 import 'core/routing/routes.dart';
-import 'features/start/splash/splash.dart';
 import 'gen/fonts.gen.dart';
 import 'generated/codegen_loader.g.dart';
 
@@ -94,7 +93,6 @@ class _MyAppState extends State<MyApp> {
           ),
         );
       },
-      child: const Splash(),
     );
   }
 }

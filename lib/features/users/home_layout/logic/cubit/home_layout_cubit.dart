@@ -5,6 +5,8 @@ import 'package:maosul_advanced/features/users/home_layout/screens/home/ui/home.
 import 'package:maosul_advanced/features/users/home_layout/screens/orders/ui/orders.dart';
 import 'package:maosul_advanced/features/users/home_layout/screens/profile/ui/profile.dart';
 import 'package:maosul_advanced/features/users/home_layout/screens/stores/ui/stores.dart';
+import '../../../../../core/di/dependancy_injection.dart';
+import '../../screens/home/logic/cubit/home_cubit.dart';
 import 'home_layout_state.dart';
 
 class HomeLayoutCubit extends Cubit<HomeLayoutState> {
@@ -14,7 +16,7 @@ class HomeLayoutCubit extends Cubit<HomeLayoutState> {
   List<Widget> bottomNavScreens = [
     const Stores(),
     const Cart(),
-    const Home(),
+    BlocProvider(create: (context) => HomeCubit(getIt())..getHome(), child: const Home()),
     const Orders(),
     const Profile(),
   ];
