@@ -21,6 +21,7 @@ import '../../features/start/types/logic/types_cubit.dart';
 import '../../features/start/types/ui/types_view.dart';
 import '../../features/users/home_layout/home_layout.dart';
 import '../../features/users/home_layout/logic/cubit/home_layout_cubit.dart';
+import '../../features/users/sections/ui/sections.dart';
 import '../di/dependancy_injection.dart';
 import 'routes.dart';
 
@@ -89,10 +90,19 @@ class AppRouter {
           ),
         );
       case Routes.homeLayout:
+        final int index = settings.arguments as int? ?? 2;
+
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => HomeLayoutCubit(),
+            create: (context) => HomeLayoutCubit()..changeBottomNavIndex(index),
             child: const HomeLayout(),
+          ),
+        );
+      case Routes.sections:
+        return MaterialPageRoute(
+          builder: (_) => MultiBlocProvider(
+            providers: [BlocProvider(create: (_) => HomeLayoutCubit())],
+            child: const Sections(),
           ),
         );
       default:

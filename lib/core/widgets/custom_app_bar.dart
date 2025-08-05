@@ -12,7 +12,9 @@ import 'app_input.dart';
 import 'app_text.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  final bool isHome;
+  final String title;
+  const CustomAppBar({super.key, this.isHome = false, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class CustomAppBar extends StatelessWidget {
                       SizedBox(
                         width: 150.w,
                         child: AppText(
-                          text: LocaleKeys.home.tr(),
+                          text: title,
                           size: 18.sp,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
@@ -53,27 +55,29 @@ class CustomAppBar extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  BlocBuilder<HomeCubit, HomeState>(
-                    builder: (context, state) {
-                      return Row(
-                        children: [
-                          SizedBox(
-                            width: 140.w,
-                            child: AppText(
-                              textAlign: TextAlign.end,
-                              text: context.read<HomeCubit>().homeAddress,
-                              size: 12.sp,
-                              end: 6.w,
+                  if (isHome) ...{
+                    BlocBuilder<HomeCubit, HomeState>(
+                      builder: (context, state) {
+                        return Row(
+                          children: [
+                            SizedBox(
+                              width: 140.w,
+                              child: AppText(
+                                textAlign: TextAlign.end,
+                                text: context.read<HomeCubit>().homeAddress,
+                                size: 12.sp,
+                                end: 6.w,
+                              ),
                             ),
-                          ),
-                          const Icon(
-                            Icons.location_on,
-                            color: AppColors.primary,
-                          ),
-                        ],
-                      );
-                    },
-                  ),
+                            const Icon(
+                              Icons.location_on,
+                              color: AppColors.primary,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  },
                 ],
               ),
             ),

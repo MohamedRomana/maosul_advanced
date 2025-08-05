@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/di/dependancy_injection.dart';
 import '../../../../../../core/map/logic/cubit/map_cubit.dart';
 import '../../../../../../core/widgets/custom_app_bar.dart';
+import '../../../../../../generated/locale_keys.g.dart';
 import '../logic/cubit/home_cubit.dart';
 import '../logic/cubit/home_state.dart';
 import 'widgets/custom_home_sections.dart';
@@ -32,7 +34,10 @@ class Home extends StatelessWidget {
                           HomeCubit(getIt())..changeAddress(context),
                     ),
                   ],
-                  child: const CustomAppBar(),
+                  child: CustomAppBar(
+                    isHome: true,
+                    title: LocaleKeys.home.tr(),
+                  ),
                 ),
                 const HomeState.homeLoading() == state
                     ? const HomeShimmer()

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maosul_advanced/core/helper/extentions.dart';
 import 'package:maosul_advanced/core/widgets/app_cached.dart';
 import 'package:maosul_advanced/features/users/home_layout/screens/home/logic/cubit/home_cubit.dart';
 import '../../../../../../../core/constants/colors.dart';
+import '../../../../../../../core/routing/routes.dart';
 import '../../../../../../../core/widgets/app_text.dart';
 import '../../logic/cubit/home_state.dart';
 
@@ -27,7 +29,10 @@ class CustomHomeSections extends StatelessWidget {
                   color: Colors.black,
                 ),
                 const Spacer(),
-                AppText(end: 16.w, text: 'عرض الكل', size: 12.sp),
+                GestureDetector(
+                  onTap: () => context.pushNamed(Routes.sections),
+                  child: AppText(end: 16.w, text: 'عرض الكل', size: 12.sp),
+                ),
               ],
             ),
 
