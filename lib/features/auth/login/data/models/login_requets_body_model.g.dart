@@ -1,3 +1,5 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
 part of 'login_requets_body_model.dart';
 
 // **************************************************************************

@@ -5,6 +5,8 @@ import 'package:maosul_advanced/features/auth/login/data/apis/login_api_service.
 import 'package:maosul_advanced/features/auth/login/data/repos/login_repo.dart';
 import 'package:maosul_advanced/features/auth/otp/apis/otp_api_service.dart';
 import 'package:maosul_advanced/features/auth/reset_pass/apis/reset_pass_api_service.dart';
+import 'package:maosul_advanced/features/users/sections/data/apis/sections_api_service.dart';
+import 'package:maosul_advanced/features/users/sections/data/repos/sections_repo.dart';
 import '../../features/auth/forget_pass/data/repos/forget_pass_repo.dart';
 import '../../features/auth/otp/data/repos/otp_repo.dart';
 import '../../features/auth/register/apis/register_api_service.dart';
@@ -55,4 +57,10 @@ Future<void> setUpGetIt() async {
   // HOME
   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
+
+  // SECTIONS
+  getIt.registerLazySingleton<SectionsApiService>(
+    () => SectionsApiService(dio),
+  );
+  getIt.registerLazySingleton<SectionsRepo>(() => SectionsRepo(getIt()));
 }

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maosul_advanced/features/users/sections/logic/cubit/sections_cubit.dart';
 import '../../features/auth/forget_pass/logic/forget_pass_cubit.dart';
 import '../../features/auth/forget_pass/ui/forget_pass.dart';
 import '../../features/auth/login/logic/login_cubit.dart';
@@ -101,7 +102,12 @@ class AppRouter {
       case Routes.sections:
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
-            providers: [BlocProvider(create: (_) => HomeLayoutCubit())],
+            providers: [
+              BlocProvider(create: (_) => HomeLayoutCubit()),
+              BlocProvider(
+                create: (_) => SectionsCubit(getIt())..getSections(),
+              ),
+            ],
             child: const Sections(),
           ),
         );
