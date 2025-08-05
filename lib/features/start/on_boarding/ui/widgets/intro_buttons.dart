@@ -27,7 +27,7 @@ class IntroButtons extends StatelessWidget {
             ? AppButton(
                 onPressed: () {
                   CacheHelper.setShowIntro(true);
-                 context.pushNamed(Routes.languages);
+                  context.pushNamed(Routes.languages);
                 },
                 child: AppText(
                   text: LocaleKeys.start_now.tr(),

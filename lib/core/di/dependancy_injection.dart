@@ -10,6 +10,8 @@ import '../../features/auth/otp/data/repos/otp_repo.dart';
 import '../../features/auth/register/apis/register_api_service.dart';
 import '../../features/auth/register/data/repos/register_repo.dart';
 import '../../features/auth/reset_pass/data/repos/reset_pass_repo.dart';
+import '../../features/start/on_boarding/data/apis/intro_api_service.dart';
+import '../../features/start/on_boarding/data/repos/intro_repo.dart';
 import '../../features/users/home_layout/screens/home/apis/home_api_service.dart';
 import '../../features/users/home_layout/screens/home/data/repos/home_repo.dart';
 import '../networking/dio_factory.dart';
@@ -18,6 +20,11 @@ final getIt = GetIt.instance;
 
 Future<void> setUpGetIt() async {
   Dio dio = DioFactory.getDio();
+
+  // INTRO
+
+  getIt.registerLazySingleton<IntroApiService>(() => IntroApiService(dio));
+  getIt.registerLazySingleton<IntroRepo>(() => IntroRepo(getIt()));
 
   // LOGIN
   getIt.registerLazySingleton<LoginApiService>(() => LoginApiService(dio));
@@ -45,7 +52,7 @@ Future<void> setUpGetIt() async {
   );
   getIt.registerLazySingleton<ResetPassRepo>(() => ResetPassRepo(getIt()));
 
-   // HOME
+  // HOME
   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
 }

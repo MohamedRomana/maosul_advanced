@@ -6,4 +6,5 @@ class ApiConstants {
   static const String forgetPass = 'api/forget-password';
   static const String resetPass = 'api/reset-password';
   static const String home = 'api/home';
+  static const String intro = 'api/intro';
 }

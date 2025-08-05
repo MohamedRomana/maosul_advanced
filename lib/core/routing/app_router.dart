@@ -9,6 +9,8 @@ import 'package:maosul_advanced/features/auth/otp/logic/otp_cubit.dart';
 import 'package:maosul_advanced/features/auth/register/logic/register_cubit.dart';
 import 'package:maosul_advanced/features/auth/reset_pass/logic/reset_pass_cubit.dart';
 import 'package:maosul_advanced/features/start/languages/logic/lang_cubit.dart';
+import 'package:maosul_advanced/features/start/on_boarding/logic/cubit/intro_cubit.dart';
+import 'package:maosul_advanced/features/start/on_boarding/ui/on_boarding.dart';
 import 'package:maosul_advanced/features/start/types/logic/types_cubit.dart';
 import 'package:maosul_advanced/features/users/home_layout/logic/cubit/home_layout_cubit.dart';
 import '../../features/auth/forget_pass/ui/forget_pass.dart';
@@ -34,6 +36,13 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) => LangCubit(),
             child: const LanguagesView(),
+          ),
+        );
+      case Routes.onBoarding:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => IntroCubit(getIt())..getIntro(),
+            child: const OnBoarding(),
           ),
         );
       case Routes.types:
@@ -87,7 +96,7 @@ class AppRouter {
           ),
         );
       default:
-        return null;
+        return MaterialPageRoute(builder: (_) => const Splash());
     }
   }
 }
