@@ -46,52 +46,56 @@ class _OnBoardingState extends State<OnBoarding> {
         return Scaffold(
           backgroundColor: AppColors.primaryMedium,
           body: SafeArea(
-            child: Stack(
-              children: [
-                PageView.builder(
-                  controller: pageController,
-                  itemCount: cubit.introList.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsetsDirectional.only(
+            child: const IntroState.introLoading() == state
+                ? const Center(
+                    child: CircularProgressIndicator(color: AppColors.primary),
+                  )
+                : Stack(
+                    children: [
+                      PageView.builder(
+                        controller: pageController,
+                        itemCount: cubit.introList.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsetsDirectional.only(
+                              start: 16.w,
+                              end: 16.w,
+                              top: 128.h,
+                              bottom: 32.h,
+                            ),
+                            child: Column(
+                              children: [
+                                IntroImageText(index: index),
+                                const Spacer(),
+                                IntroButtons(
+                                  pageController: pageController,
+                                  index: index,
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                      PositionedDirectional(
+                        bottom: 210.h,
                         start: 16.w,
                         end: 16.w,
-                        top: 128.h,
-                        bottom: 32.h,
-                      ),
-                      child: Column(
-                        children: [
-                          IntroImageText(index: index),
-                          const Spacer(),
-                          IntroButtons(
-                            pageController: pageController,
-                            index: index,
+                        child: DotsIndicator(
+                          dotsCount: cubit.introList.length,
+                          position: currentIndex,
+                          decorator: DotsDecorator(
+                            activeColor: AppColors.primary,
+                            color: const Color(0xff878787).withOpacity(0.3),
+                            size: Size.square(12.r),
+                            activeSize: Size(20.w, 12.h),
+                            activeShape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.r),
+                            ),
                           ),
-                        ],
+                        ),
                       ),
-                    );
-                  },
-                ),
-                PositionedDirectional(
-                  bottom: 210.h,
-                  start: 16.w,
-                  end: 16.w,
-                  child: DotsIndicator(
-                    dotsCount: cubit.introList.length,
-                    position: currentIndex,
-                    decorator: DotsDecorator(
-                      activeColor: AppColors.primary,
-                      color: const Color(0xff878787).withOpacity(0.3),
-                      size: Size.square(12.r),
-                      activeSize: Size(20.w, 12.h),
-                      activeShape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
-                    ),
+                    ],
                   ),
-                ),
-              ],
-            ),
           ),
         );
       },

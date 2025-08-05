@@ -23,7 +23,12 @@ class HomeLayout extends StatelessWidget {
           bottomNavigationBar: Container(
             height: 70.h,
             width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 13.h),
+            padding: EdgeInsetsDirectional.only(
+              start: 16.w,
+              end: 16.w,
+              top: 10.h,
+              bottom: 10.h,
+            ),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -41,7 +46,6 @@ class HomeLayout extends StatelessWidget {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 InkWell(
                   splashColor: Colors.transparent,
@@ -53,8 +57,8 @@ class HomeLayout extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         Assets.svg.market,
-                        height: 14.h,
-                        width: 17.w,
+                        height: 17.h,
+                        width: 20.w,
                         fit: BoxFit.cover,
                       ),
                       AppText(
@@ -75,8 +79,8 @@ class HomeLayout extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         Assets.svg.shoppingCart,
-                        height: 14.h,
-                        width: 17.w,
+                        height: 17.h,
+                        width: 20.w,
                         fit: BoxFit.cover,
                       ),
                       AppText(
@@ -94,8 +98,7 @@ class HomeLayout extends StatelessWidget {
                     cubit.changeBottomNavIndex(2);
                   },
                   child: Container(
-                    height: 50.w,
-                    width: 50.w,
+                    padding: EdgeInsets.all(14.r),
                     decoration: const BoxDecoration(
                       color: AppColors.primary,
                       shape: BoxShape.circle,
@@ -103,8 +106,8 @@ class HomeLayout extends StatelessWidget {
                     child: Center(
                       child: SvgPicture.asset(
                         Assets.svg.home,
-                        height: 20.h,
-                        width: 17.w,
+                        height: 23.h,
+                        width: 20.w,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -120,8 +123,8 @@ class HomeLayout extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         Assets.svg.deliveryBox,
-                        height: 14.h,
-                        width: 17.w,
+                        height: 17.h,
+                        width: 20.w,
                         fit: BoxFit.cover,
                       ),
                       AppText(
@@ -142,8 +145,8 @@ class HomeLayout extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         Assets.svg.user,
-                        height: 14.h,
-                        width: 17.w,
+                        height: 17.h,
+                        width: 20.w,
                         fit: BoxFit.cover,
                       ),
                       AppText(

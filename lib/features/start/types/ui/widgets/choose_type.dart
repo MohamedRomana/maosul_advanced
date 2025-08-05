@@ -12,7 +12,6 @@ import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/app_text.dart';
 import '../../../../../generated/locale_keys.g.dart';
-import '../../../../users/home_layout/logic/cubit/home_layout_cubit.dart';
 import '../../logic/types_state.dart';
 
 class ChooseType extends StatelessWidget {
@@ -97,13 +96,10 @@ class ChooseType extends StatelessWidget {
                 } else {
                   await CacheHelper.setUserType('provider');
                 }
-                context.pop();
-                context.read<HomeLayoutCubit>().changeBottomNavIndex(2);
+
                 context.pushNamedAndRemoveUntil(
-                  Routes.homeLayout,
-                  predicate: (Route<dynamic> route) {
-                    return false;
-                  },
+                  Routes.login,
+                  predicate: (_) => false,
                 );
               },
               child: AppText(

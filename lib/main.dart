@@ -87,7 +87,6 @@ class _MyAppState extends State<MyApp> {
             supportedLocales: context.supportedLocales,
             locale: context.locale,
             navigatorKey: navigatorKey,
-            home: child,
             onGenerateRoute: widget.appRouter.onGenerateRoute,
             initialRoute: Routes.splash,
           ),
