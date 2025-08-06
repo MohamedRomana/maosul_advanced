@@ -16,4 +16,5 @@ class Routes {
   static const String orders = '/orders';
   static const String homeLayout = '/homeLayout';
   static const String sections = '/sections';
+  static const String storeName = '/storeName';
 }

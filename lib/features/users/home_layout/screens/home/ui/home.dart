@@ -37,6 +37,7 @@ class Home extends StatelessWidget {
                   child: CustomAppBar(
                     isHome: true,
                     title: LocaleKeys.home.tr(),
+                    isSearch: true,
                   ),
                 ),
                 const HomeState.homeLoading() == state

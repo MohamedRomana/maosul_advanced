@@ -22,7 +22,7 @@ class Sections extends StatelessWidget {
           bottomNavigationBar: const CustomBottomNav(),
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(130.h),
-            child: const CustomAppBar(title: 'الاقسام'),
+            child: const CustomAppBar(title: 'الاقسام', isSearch: true),
           ),
           body: const SectionsState.sectionsLoading() == state
               ? const SectionsGrideShimmer()

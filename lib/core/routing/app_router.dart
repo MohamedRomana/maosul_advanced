@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maosul_advanced/features/users/sections/logic/cubit/sections_cubit.dart';
+import 'package:maosul_advanced/features/users/store_name/ui/store_name.dart';
 import '../../features/auth/forget_pass/logic/forget_pass_cubit.dart';
 import '../../features/auth/forget_pass/ui/forget_pass.dart';
 import '../../features/auth/login/logic/login_cubit.dart';
@@ -111,6 +112,8 @@ class AppRouter {
             child: const Sections(),
           ),
         );
+      case Routes.storeName:
+        return MaterialPageRoute(builder: (context) => const StoreName());
       default:
         return MaterialPageRoute(builder: (_) => const Splash());
     }

@@ -2,11 +2,9 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:maosul_advanced/core/helper/extentions.dart';
-import '../../features/users/home_layout/logic/cubit/home_layout_cubit.dart';
 import '../../gen/assets.gen.dart';
 import '../../generated/locale_keys.g.dart';
 import '../constants/colors.dart';
@@ -18,7 +16,6 @@ class CustomBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<HomeLayoutCubit>();
     return Container(
       height: 70.h,
       width: double.infinity,
@@ -50,10 +47,10 @@ class CustomBottomNav extends StatelessWidget {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () {
-              cubit.changeBottomNavIndex(0);
               context.pushNamedAndRemoveUntil(
                 Routes.homeLayout,
                 predicate: (_) => false,
+                arguments: 0,
               );
             },
             child: Column(
