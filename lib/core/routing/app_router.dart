@@ -24,6 +24,7 @@ import '../../features/start/types/ui/types_view.dart';
 import '../../features/users/home_layout/home_layout.dart';
 import '../../features/users/home_layout/logic/cubit/home_layout_cubit.dart';
 import '../../features/users/sections/ui/sections.dart';
+import '../../features/users/store_name/logic/cubit/store_name_cubit.dart';
 import '../di/dependancy_injection.dart';
 import 'routes.dart';
 
@@ -113,7 +114,14 @@ class AppRouter {
           ),
         );
       case Routes.storeName:
-        return MaterialPageRoute(builder: (context) => const StoreName());
+        final providerId = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                StoreNameCubit(getIt())..getStoreName(providerId: providerId.toString()),
+            child: StoreName(providerId: providerId.toString()),
+          ),
+        );
       default:
         return MaterialPageRoute(builder: (_) => const Splash());
     }

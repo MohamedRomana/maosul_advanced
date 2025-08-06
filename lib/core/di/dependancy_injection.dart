@@ -18,6 +18,8 @@ import '../../features/start/on_boarding/data/repos/intro_repo.dart';
 import '../../features/users/home_layout/screens/home/apis/home_api_service.dart';
 import '../../features/users/home_layout/screens/home/data/repos/home_repo.dart';
 import '../../features/users/home_layout/screens/stores/data/repos/stores_repo.dart';
+import '../../features/users/store_name/data/apis/store_name_api_service.dart';
+import '../../features/users/store_name/data/repos/store_name_repo.dart';
 import '../networking/dio_factory.dart';
 
 final getIt = GetIt.instance;
@@ -69,4 +71,9 @@ Future<void> setUpGetIt() async {
   // STORES
   getIt.registerLazySingleton<StoresApiServices>(() => StoresApiServices(dio));
   getIt.registerLazySingleton<StoresRepo>(() => StoresRepo(getIt()));
+
+  // STORE NAME
+  getIt.registerLazySingleton<StoreNameApiService>(() => StoreNameApiService(dio));
+  getIt.registerLazySingleton<StoreNameRepo>(() => StoreNameRepo(getIt()));
+  
 }

@@ -50,7 +50,10 @@ class Stores extends StatelessWidget {
                             SizedBox(height: 16.h),
                         itemBuilder: (context, index) => GestureDetector(
                           onTap: () {
-                            context.pushNamed(Routes.storeName);
+                            context.pushNamed(
+                              Routes.storeName,
+                              arguments: cubit.storesData[index].id,
+                            );
                           },
                           child: Stack(
                             children: [
