@@ -14,8 +14,6 @@ ResetPassResponseModel _$ResetPassResponseModelFromJson(
   showImage: json['show_image'] as bool?,
 );
 
-
-// ignore: unused_element
 Map<String, dynamic> _$ResetPassResponseModelToJson(
   ResetPassResponseModel instance,
 ) => <String, dynamic>{

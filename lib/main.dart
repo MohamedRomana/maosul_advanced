@@ -21,7 +21,7 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
   await CacheHelper.init();
-  setUpGetIt();
+  await setUpGetIt();
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // await NotificationHelper.init();
   LocationHelper.determinePosition();

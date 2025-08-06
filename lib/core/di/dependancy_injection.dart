@@ -5,6 +5,7 @@ import 'package:maosul_advanced/features/auth/login/data/apis/login_api_service.
 import 'package:maosul_advanced/features/auth/login/data/repos/login_repo.dart';
 import 'package:maosul_advanced/features/auth/otp/apis/otp_api_service.dart';
 import 'package:maosul_advanced/features/auth/reset_pass/apis/reset_pass_api_service.dart';
+import 'package:maosul_advanced/features/users/home_layout/screens/stores/apis/stores_api_services.dart';
 import 'package:maosul_advanced/features/users/sections/data/apis/sections_api_service.dart';
 import 'package:maosul_advanced/features/users/sections/data/repos/sections_repo.dart';
 import '../../features/auth/forget_pass/data/repos/forget_pass_repo.dart';
@@ -16,6 +17,7 @@ import '../../features/start/on_boarding/data/apis/intro_api_service.dart';
 import '../../features/start/on_boarding/data/repos/intro_repo.dart';
 import '../../features/users/home_layout/screens/home/apis/home_api_service.dart';
 import '../../features/users/home_layout/screens/home/data/repos/home_repo.dart';
+import '../../features/users/home_layout/screens/stores/data/repos/stores_repo.dart';
 import '../networking/dio_factory.dart';
 
 final getIt = GetIt.instance;
@@ -63,4 +65,8 @@ Future<void> setUpGetIt() async {
     () => SectionsApiService(dio),
   );
   getIt.registerLazySingleton<SectionsRepo>(() => SectionsRepo(getIt()));
+
+  // STORES
+  getIt.registerLazySingleton<StoresApiServices>(() => StoresApiServices(dio));
+  getIt.registerLazySingleton<StoresRepo>(() => StoresRepo(getIt()));
 }

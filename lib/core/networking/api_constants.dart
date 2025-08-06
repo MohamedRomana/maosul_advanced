@@ -8,4 +8,5 @@ class ApiConstants {
   static const String home = 'api/home';
   static const String intro = 'api/intro';
   static const String sections = 'api/sections';
+  static const String stores = 'api/providers';
 }

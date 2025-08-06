@@ -16,7 +16,6 @@ LoginResponseModel _$LoginResponseModelFromJson(Map<String, dynamic> json) =>
           : UserData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-// ignore: unused_element
 Map<String, dynamic> _$LoginResponseModelToJson(LoginResponseModel instance) =>
     <String, dynamic>{
       'key': instance.key,

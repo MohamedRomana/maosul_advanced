@@ -8,9 +8,36 @@ class CacheHelper {
   static const _deviceToken = 'deviceToken';
   static const _type = 'type';
   static const _intro = 'intro';
+  static const _lat = 'lat';
+  static const _lng = 'lng';
+  static const _address = 'address';
 
   static init() async {
     _preferences = await SharedPreferences.getInstance();
+  }
+
+  static Future<void> setLat(double? lat) async {
+    await _preferences.setDouble(_lat, lat ?? 0.0);
+  }
+
+  static Future<void> setLng(double? lng) async {
+    await _preferences.setDouble(_lng, lng ?? 0.0);
+  }
+
+  static Future<void> setAddress(String? address) async {
+    await _preferences.setString(_address, address ?? '');
+  }
+
+  static double getLat() {
+    return _preferences.getDouble(_lat) ?? 0.0;
+  }
+
+  static double getLng() {
+    return _preferences.getDouble(_lng) ?? 0.0;
+  }
+
+  static String getAddress() {
+    return _preferences.getString(_address) ?? '';
   }
 
   static setUserId(String? id) async {

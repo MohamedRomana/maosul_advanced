@@ -13,7 +13,6 @@ OtpResponseModel _$OtpResponseModelFromJson(Map<String, dynamic> json) =>
       showImage: json['show_image'] as bool?,
     );
 
-// ignore: unused_element
 Map<String, dynamic> _$OtpResponseModelToJson(OtpResponseModel instance) =>
     <String, dynamic>{
       'msg': instance.msg,
