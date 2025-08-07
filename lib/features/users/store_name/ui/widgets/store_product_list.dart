@@ -2,14 +2,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:maosul_advanced/features/users/store_name/ui/widgets/custom_empty_sub_sections.dart';
+import 'package:maosul_advanced/core/di/dependancy_injection.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/widgets/app_cached.dart';
 import '../../../../../core/widgets/app_text.dart';
 import '../../../../../generated/locale_keys.g.dart';
+import '../../logic/cubit/add_to_cart_cubit.dart';
+import '../../logic/cubit/show_product_cubit.dart';
 import '../../logic/cubit/store_name_cubit.dart';
 import '../../logic/cubit/store_name_state.dart';
 import 'add_to_cart_sheet.dart';
+import 'custom_empty_sub_sections.dart';
 
 class StoreProductsList extends StatelessWidget {
   const StoreProductsList({super.key});
@@ -85,7 +88,25 @@ class StoreProductsList extends StatelessWidget {
                             isScrollControlled: true,
                             context: context,
                             builder: (context) {
-                              return const AddToCardSheet();
+                              final serviceId = cubit.services[index].id;
+                              return MultiBlocProvider(
+                                providers: [
+                                  BlocProvider(
+                                    create: (context) =>
+                                        ShowProductCubit(getIt())
+                                          ..getShowProduct(
+                                            serviceId: serviceId.toString(),
+                                          ),
+                                  ),
+                                  BlocProvider(
+                                    create: (context) =>
+                                        AddToCartCubit(getIt()),
+                                  ),
+                                ],
+                                child: AddToCardSheet(
+                                  serviceId: serviceId.toString(),
+                                ),
+                              );
                             },
                           );
                         },

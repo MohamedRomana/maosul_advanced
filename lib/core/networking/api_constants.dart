@@ -10,4 +10,6 @@ class ApiConstants {
   static const String sections = 'api/sections';
   static const String stores = 'api/providers';
   static const String storeName = 'api/show-provider';
+  static const String addToCart = 'api/add-to-cart';
+  static const String showService = 'api/show-service';
 }

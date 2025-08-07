@@ -8,6 +8,8 @@ import 'package:maosul_advanced/features/auth/reset_pass/apis/reset_pass_api_ser
 import 'package:maosul_advanced/features/users/home_layout/screens/stores/apis/stores_api_services.dart';
 import 'package:maosul_advanced/features/users/sections/data/apis/sections_api_service.dart';
 import 'package:maosul_advanced/features/users/sections/data/repos/sections_repo.dart';
+import 'package:maosul_advanced/features/users/store_name/data/apis/show_product_api_service.dart';
+import 'package:maosul_advanced/features/users/store_name/data/repos/show_product_repo.dart';
 import '../../features/auth/forget_pass/data/repos/forget_pass_repo.dart';
 import '../../features/auth/otp/data/repos/otp_repo.dart';
 import '../../features/auth/register/apis/register_api_service.dart';
@@ -18,7 +20,9 @@ import '../../features/start/on_boarding/data/repos/intro_repo.dart';
 import '../../features/users/home_layout/screens/home/apis/home_api_service.dart';
 import '../../features/users/home_layout/screens/home/data/repos/home_repo.dart';
 import '../../features/users/home_layout/screens/stores/data/repos/stores_repo.dart';
+import '../../features/users/store_name/data/apis/add_to_cart_api_service.dart';
 import '../../features/users/store_name/data/apis/store_name_api_service.dart';
+import '../../features/users/store_name/data/repos/add_to_cart_repo.dart';
 import '../../features/users/store_name/data/repos/store_name_repo.dart';
 import '../networking/dio_factory.dart';
 
@@ -75,5 +79,14 @@ Future<void> setUpGetIt() async {
   // STORE NAME
   getIt.registerLazySingleton<StoreNameApiService>(() => StoreNameApiService(dio));
   getIt.registerLazySingleton<StoreNameRepo>(() => StoreNameRepo(getIt()));
+
+  // SHOW PRODUCT
+  getIt.registerLazySingleton<ShowProductApiService>(() => ShowProductApiService(dio));
+  getIt.registerLazySingleton<ShowProductRepo>(() => ShowProductRepo(getIt()));
+
+
+  // ADD TO CART
+  getIt.registerLazySingleton<AddToCartApiService>(() => AddToCartApiService(dio));
+  getIt.registerLazySingleton<AddToCartRepo>(() => AddToCartRepo(getIt()));
   
 }
