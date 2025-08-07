@@ -10,7 +10,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maosul_advanced/core/helper/extentions.dart';
 import '../../features/auth/register/logic/register_cubit.dart';
 import '../../gen/fonts.gen.dart';
-import '../cache/cache_helper.dart';
 import '../constants/colors.dart';
 import '../widgets/app_button.dart';
 import '../widgets/app_text.dart';
@@ -43,21 +42,6 @@ class _LocationState extends State<Location> {
     position = await LocationHelper.determinePosition().whenComplete(() {
       setState(() {});
     });
-    if (position != null) {
-      await CacheHelper.setLat(position!.latitude);
-      await CacheHelper.setLng(position!.longitude);
-
-      final placeMarks = await placemarkFromCoordinates(
-        position!.latitude,
-        position!.longitude,
-      );
-
-      final address = placeMarks.isNotEmpty ? placeMarks[0].street : null;
-
-      context.read<MapCubit>().changeAddress(newAddress: address ?? '');
-
-      await CacheHelper.setAddress(address);
-    }
   }
 
   @override

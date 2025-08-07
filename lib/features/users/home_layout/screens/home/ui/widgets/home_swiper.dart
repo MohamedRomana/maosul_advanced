@@ -32,7 +32,7 @@ class HomeSwiper extends StatelessWidget {
             ],
           ),
           child: Swiper(
-            itemCount: cubit.homeData.sliders!.length,
+            itemCount: cubit.homeData!.sliders!.length,
             autoplay: true,
             pagination: const SwiperPagination(
               alignment: Alignment.bottomCenter,
@@ -49,7 +49,7 @@ class HomeSwiper extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15.r),
                 child: AppCachedImage(
-                  image: cubit.homeData.sliders![index].image ?? "",
+                  image: cubit.homeData!.sliders![index].image ?? "",
                   fit: BoxFit.cover,
                 ),
               ),

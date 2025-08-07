@@ -1,5 +1,7 @@
-
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+
+import '../cache/cache_helper.dart';
 
 class LocationHelper {
   static Future<Position?> determinePosition() async {
@@ -40,5 +42,20 @@ class LocationHelper {
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
+  }
+
+  static Future<Position> _savePosition(Position position) async {
+    await CacheHelper.setLat(position.latitude);
+    await CacheHelper.setLng(position.longitude);
+
+    final placemarks = await placemarkFromCoordinates(
+      position.latitude,
+      position.longitude,
+    );
+    final address = placemarks.isNotEmpty ? placemarks[0].street : '';
+
+    await CacheHelper.setAddress(address);
+
+    return position;
   }
 }

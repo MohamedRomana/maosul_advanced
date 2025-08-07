@@ -1,10 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../features/users/home_layout/screens/home/logic/cubit/home_cubit.dart';
-import '../../features/users/home_layout/screens/home/logic/cubit/home_state.dart';
+import 'package:maosul_advanced/core/cache/cache_helper.dart';
 import '../../gen/assets.gen.dart';
 import '../../generated/locale_keys.g.dart';
 import '../constants/colors.dart';
@@ -66,26 +64,22 @@ class CustomAppBar extends StatelessWidget {
                   ),
                   const Spacer(),
                   if (isHome) ...{
-                    BlocBuilder<HomeCubit, HomeState>(
-                      builder: (context, state) {
-                        return Row(
-                          children: [
-                            SizedBox(
-                              width: 140.w,
-                              child: AppText(
-                                textAlign: TextAlign.end,
-                                text: context.read<HomeCubit>().homeAddress,
-                                size: 12.sp,
-                                end: 6.w,
-                              ),
-                            ),
-                            const Icon(
-                              Icons.location_on,
-                              color: AppColors.primary,
-                            ),
-                          ],
-                        );
-                      },
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 140.w,
+                          child: AppText(
+                            textAlign: TextAlign.end,
+                            text: CacheHelper.getAddress(),
+                            size: 12.sp,
+                            end: 6.w,
+                          ),
+                        ),
+                        const Icon(
+                          Icons.location_on,
+                          color: AppColors.primary,
+                        ),
+                      ],
                     ),
                   },
                 ],

@@ -2,8 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../../core/di/dependancy_injection.dart';
-import '../../../../../../core/map/logic/cubit/map_cubit.dart';
 import '../../../../../../core/widgets/custom_app_bar.dart';
 import '../../../../../../generated/locale_keys.g.dart';
 import '../logic/cubit/home_cubit.dart';
@@ -26,19 +24,10 @@ class Home extends StatelessWidget {
           builder: (context, state) {
             return Column(
               children: [
-                MultiBlocProvider(
-                  providers: [
-                    BlocProvider<MapCubit>(create: (_) => MapCubit()),
-                    BlocProvider<HomeCubit>(
-                      create: (context) =>
-                          HomeCubit(getIt())..changeAddress(context),
-                    ),
-                  ],
-                  child: CustomAppBar(
-                    isHome: true,
-                    title: LocaleKeys.home.tr(),
-                    isSearch: true,
-                  ),
+                CustomAppBar(
+                  isHome: true,
+                  title: LocaleKeys.home.tr(),
+                  isSearch: true,
                 ),
                 const HomeState.homeLoading() == state
                     ? const HomeShimmer()

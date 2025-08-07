@@ -55,12 +55,11 @@ extension HomeStatePatterns<T> on HomeState<T> {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial<T> value)?  initial,TResult Function( GetCurrentLocation<T> value)?  getCurrentLocation,TResult Function( HomeLoading<T> value)?  homeLoading,TResult Function( HomeSuccess<T> value)?  homeSuccess,TResult Function( HomeError<T> value)?  homeError,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial<T> value)?  initial,TResult Function( HomeLoading<T> value)?  homeLoading,TResult Function( HomeSuccess<T> value)?  homeSuccess,TResult Function( HomeError<T> value)?  homeError,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial(_that);case GetCurrentLocation() when getCurrentLocation != null:
-return getCurrentLocation(_that);case HomeLoading() when homeLoading != null:
+return initial(_that);case HomeLoading() when homeLoading != null:
 return homeLoading(_that);case HomeSuccess() when homeSuccess != null:
 return homeSuccess(_that);case HomeError() when homeError != null:
 return homeError(_that);case _:
@@ -81,12 +80,11 @@ return homeError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial<T> value)  initial,required TResult Function( GetCurrentLocation<T> value)  getCurrentLocation,required TResult Function( HomeLoading<T> value)  homeLoading,required TResult Function( HomeSuccess<T> value)  homeSuccess,required TResult Function( HomeError<T> value)  homeError,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial<T> value)  initial,required TResult Function( HomeLoading<T> value)  homeLoading,required TResult Function( HomeSuccess<T> value)  homeSuccess,required TResult Function( HomeError<T> value)  homeError,}){
 final _that = this;
 switch (_that) {
 case _Initial():
-return initial(_that);case GetCurrentLocation():
-return getCurrentLocation(_that);case HomeLoading():
+return initial(_that);case HomeLoading():
 return homeLoading(_that);case HomeSuccess():
 return homeSuccess(_that);case HomeError():
 return homeError(_that);case _:
@@ -106,12 +104,11 @@ return homeError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial<T> value)?  initial,TResult? Function( GetCurrentLocation<T> value)?  getCurrentLocation,TResult? Function( HomeLoading<T> value)?  homeLoading,TResult? Function( HomeSuccess<T> value)?  homeSuccess,TResult? Function( HomeError<T> value)?  homeError,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial<T> value)?  initial,TResult? Function( HomeLoading<T> value)?  homeLoading,TResult? Function( HomeSuccess<T> value)?  homeSuccess,TResult? Function( HomeError<T> value)?  homeError,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial(_that);case GetCurrentLocation() when getCurrentLocation != null:
-return getCurrentLocation(_that);case HomeLoading() when homeLoading != null:
+return initial(_that);case HomeLoading() when homeLoading != null:
 return homeLoading(_that);case HomeSuccess() when homeSuccess != null:
 return homeSuccess(_that);case HomeError() when homeError != null:
 return homeError(_that);case _:
@@ -131,11 +128,10 @@ return homeError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  getCurrentLocation,TResult Function()?  homeLoading,TResult Function( T data)?  homeSuccess,TResult Function( ApiErrorModel apiErrorModel)?  homeError,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  homeLoading,TResult Function( T data)?  homeSuccess,TResult Function( ApiErrorModel apiErrorModel)?  homeError,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial();case GetCurrentLocation() when getCurrentLocation != null:
-return getCurrentLocation();case HomeLoading() when homeLoading != null:
+return initial();case HomeLoading() when homeLoading != null:
 return homeLoading();case HomeSuccess() when homeSuccess != null:
 return homeSuccess(_that.data);case HomeError() when homeError != null:
 return homeError(_that.apiErrorModel);case _:
@@ -156,11 +152,10 @@ return homeError(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  getCurrentLocation,required TResult Function()  homeLoading,required TResult Function( T data)  homeSuccess,required TResult Function( ApiErrorModel apiErrorModel)  homeError,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  homeLoading,required TResult Function( T data)  homeSuccess,required TResult Function( ApiErrorModel apiErrorModel)  homeError,}) {final _that = this;
 switch (_that) {
 case _Initial():
-return initial();case GetCurrentLocation():
-return getCurrentLocation();case HomeLoading():
+return initial();case HomeLoading():
 return homeLoading();case HomeSuccess():
 return homeSuccess(_that.data);case HomeError():
 return homeError(_that.apiErrorModel);case _:
@@ -180,11 +175,10 @@ return homeError(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  getCurrentLocation,TResult? Function()?  homeLoading,TResult? Function( T data)?  homeSuccess,TResult? Function( ApiErrorModel apiErrorModel)?  homeError,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  homeLoading,TResult? Function( T data)?  homeSuccess,TResult? Function( ApiErrorModel apiErrorModel)?  homeError,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial();case GetCurrentLocation() when getCurrentLocation != null:
-return getCurrentLocation();case HomeLoading() when homeLoading != null:
+return initial();case HomeLoading() when homeLoading != null:
 return homeLoading();case HomeSuccess() when homeSuccess != null:
 return homeSuccess(_that.data);case HomeError() when homeError != null:
 return homeError(_that.apiErrorModel);case _:
@@ -219,38 +213,6 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
   return 'HomeState<$T>.initial()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class GetCurrentLocation<T> implements HomeState<T> {
-  const GetCurrentLocation();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetCurrentLocation<T>);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'HomeState<$T>.getCurrentLocation()';
 }
 
 

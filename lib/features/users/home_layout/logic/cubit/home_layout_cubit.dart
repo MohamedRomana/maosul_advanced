@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maosul_advanced/features/users/home_layout/screens/cart/ui/cart.dart';
-import 'package:maosul_advanced/features/users/home_layout/screens/home/ui/home.dart';
-import 'package:maosul_advanced/features/users/home_layout/screens/orders/ui/orders.dart';
-import 'package:maosul_advanced/features/users/home_layout/screens/profile/ui/profile.dart';
-import 'package:maosul_advanced/features/users/home_layout/screens/stores/ui/stores.dart';
 import '../../../../../core/di/dependancy_injection.dart';
+import '../../screens/cart/ui/cart.dart';
 import '../../screens/home/logic/cubit/home_cubit.dart';
+import '../../screens/home/ui/home.dart';
+import '../../screens/orders/ui/orders.dart';
+import '../../screens/profile/ui/profile.dart';
+import '../../screens/stores/ui/stores.dart';
 import 'home_layout_state.dart';
 
 class HomeLayoutCubit extends Cubit<HomeLayoutState> {

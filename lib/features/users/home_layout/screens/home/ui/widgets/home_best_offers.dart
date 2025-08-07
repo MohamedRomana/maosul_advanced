@@ -33,7 +33,7 @@ class HomeBestOffers extends StatelessWidget {
             SizedBox(
               height: 150.h,
               child: ListView.separated(
-                itemCount: cubit.homeData.bestProviders!.length,
+                itemCount: cubit.homeData!.bestProviders!.length,
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 separatorBuilder: (context, index) => SizedBox(width: 10.w),
                 scrollDirection: Axis.horizontal,
@@ -43,7 +43,7 @@ class HomeBestOffers extends StatelessWidget {
                   onTap: () {
                     context.pushNamed(
                       Routes.storeName,
-                      arguments: cubit.homeData.bestProviders![index].id,
+                      arguments: cubit.homeData!.bestProviders![index].id,
                     );
                   },
                   child: Stack(
@@ -55,7 +55,7 @@ class HomeBestOffers extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.r),
                           child: AppCachedImage(
                             image:
-                                cubit.homeData.bestProviders![index].avatar ??
+                                cubit.homeData!.bestProviders![index].avatar ??
                                 "",
                             height: 150.h,
                             width: 140.w,
@@ -87,7 +87,7 @@ class HomeBestOffers extends StatelessWidget {
                           child: Center(
                             child: AppText(
                               text:
-                                  '${cubit.homeData.bestProviders![index].discount}%',
+                                  '${cubit.homeData!.bestProviders![index].discount}%',
                               size: 12.sp,
                               color: Colors.white,
                             ),
@@ -103,7 +103,7 @@ class HomeBestOffers extends StatelessWidget {
                           children: [
                             AppText(
                               text:
-                                  cubit.homeData.bestProviders![index].name ??
+                                  cubit.homeData!.bestProviders![index].name ??
                                   "",
                               size: 12.sp,
                               fontWeight: FontWeight.w700,
@@ -113,7 +113,7 @@ class HomeBestOffers extends StatelessWidget {
                               lines: 2,
                               top: 5.h,
                               text:
-                                  " ${cubit.homeData.bestProviders![index].city} - ${cubit.homeData.bestProviders![index].country}",
+                                  " ${cubit.homeData!.bestProviders![index].city} - ${cubit.homeData!.bestProviders![index].country}",
                               size: 10.sp,
                               color: Colors.white,
                             ),

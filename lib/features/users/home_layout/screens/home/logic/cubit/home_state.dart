@@ -5,7 +5,6 @@ part 'home_state.freezed.dart';
 @freezed
 class HomeState<T> with _$HomeState<T> {
   const factory HomeState.initial() = _Initial;
-  const factory HomeState.getCurrentLocation() = GetCurrentLocation;
   const factory HomeState.homeLoading() = HomeLoading;
   const factory HomeState.homeSuccess(T data) =
       HomeSuccess;

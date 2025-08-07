@@ -41,7 +41,7 @@ class CustomHomeSections extends StatelessWidget {
               height: 40.h,
               child: ListView.separated(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
-                itemCount: cubit.homeData.sections!.length,
+                itemCount: cubit.homeData!.sections!.length,
                 scrollDirection: Axis.horizontal,
                 separatorBuilder: (context, index) => SizedBox(width: 6.w),
                 itemBuilder: (context, index) => Container(
@@ -54,7 +54,7 @@ class CustomHomeSections extends StatelessWidget {
                   child: Row(
                     children: [
                       AppCachedImage(
-                        image: cubit.homeData.sections![index].image ?? '',
+                        image: cubit.homeData!.sections![index].image ?? '',
                         height: 20.w,
                         width: 20.w,
                         fit: BoxFit.fill,
@@ -63,7 +63,7 @@ class CustomHomeSections extends StatelessWidget {
                       SizedBox(
                         width: 60.w,
                         child: AppText(
-                          text: cubit.homeData.sections![index].title ?? '',
+                          text: cubit.homeData!.sections![index].title ?? '',
                           color: Colors.black,
                           size: 12.sp,
                         ),

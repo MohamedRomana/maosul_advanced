@@ -30,7 +30,7 @@ class HomeNearYou extends StatelessWidget {
             SizedBox(
               height: 120.h,
               child: ListView.separated(
-                itemCount: homeCubit.homeData.nearProviders!.length,
+                itemCount: homeCubit.homeData!.nearProviders!.length,
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 separatorBuilder: (context, index) => SizedBox(width: 10.w),
                 scrollDirection: Axis.horizontal,
@@ -40,7 +40,7 @@ class HomeNearYou extends StatelessWidget {
                   onTap: (){
                       context.pushNamed(
                       Routes.storeName,
-                      arguments: homeCubit.homeData.nearProviders![index].id,
+                      arguments: homeCubit.homeData!.nearProviders![index].id,
                     );
                   },
                   child: Stack(
@@ -52,7 +52,7 @@ class HomeNearYou extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.r),
                           child: AppCachedImage(
                             image:
-                                homeCubit.homeData.nearProviders![index].avatar!,
+                                homeCubit.homeData!.nearProviders![index].avatar!,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -78,7 +78,7 @@ class HomeNearYou extends StatelessWidget {
                                   width: 100.w,
                                   child: AppText(
                                     text: homeCubit
-                                        .homeData
+                                        .homeData!
                                         .nearProviders![index]
                                         .name!,
                                     size: 12.sp,
@@ -92,7 +92,7 @@ class HomeNearYou extends StatelessWidget {
                                     AppText(
                                       text:
                                           (homeCubit
-                                                  .homeData
+                                                  .homeData!
                                                   .nearProviders![index]
                                                   .rate!)
                                               .toString(),
@@ -112,7 +112,7 @@ class HomeNearYou extends StatelessWidget {
                             ),
                             AppText(
                               text:
-                                  '${homeCubit.homeData.nearProviders![index].city} - ${homeCubit.homeData.nearProviders![index].country}',
+                                  '${homeCubit.homeData!.nearProviders![index].city} - ${homeCubit.homeData!.nearProviders![index].country}',
                               size: 10.sp,
                               color: Colors.white,
                             ),
