@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:maosul_advanced/core/di/dependancy_injection.dart';
 import 'package:maosul_advanced/core/routing/app_router.dart';
 import 'core/constants/colors.dart';
@@ -22,9 +23,10 @@ void main() async {
   ]);
   await CacheHelper.init();
   await setUpGetIt();
+  await initLocationCache();
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // await NotificationHelper.init();
-  LocationHelper.determinePosition();
+  // LocationHelper.determinePosition();
   await EasyLocalization.ensureInitialized();
   debugPrint("userId is ${CacheHelper.getUserId()}");
 
@@ -93,5 +95,31 @@ class _MyAppState extends State<MyApp> {
         );
       },
     );
+  }
+}
+
+Future<void> initLocationCache() async {
+  try {
+    final position = await LocationHelper.determinePosition();
+
+    if (position != null) {
+      await CacheHelper.setLat(position.latitude);
+      await CacheHelper.setLng(position.longitude);
+
+      final placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
+      final address = placemarks.isNotEmpty ? placemarks[0].street : '';
+
+      await CacheHelper.setAddress(address);
+
+      debugPrint(
+        '✅ Location cached: ${position.latitude}, ${position.longitude}',
+      );
+      debugPrint('✅ Address: $address');
+    }
+  } catch (e) {
+    debugPrint('❌ Failed to cache location: $e');
   }
 }
