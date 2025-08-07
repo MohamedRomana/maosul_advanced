@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../logic/cubit/show_product_cubit.dart';
 import '../../logic/cubit/show_product_state.dart';
+import 'add_to_cart_shimmer.dart';
 import 'product_count_price.dart';
 import 'product_sheet_details.dart';
 
@@ -30,12 +31,14 @@ class AddToCardSheet extends StatelessWidget {
               topRight: Radius.circular(20.r),
             ),
           ),
-          child: Column(
-            children: [
-              const ProductSheetDetails(),
-              ProductCountPrice(id: serviceId),
-            ],
-          ),
+          child: const ShowProductState.showProductLoading() == state
+              ? const AddToCartShimmer()
+              : Column(
+                  children: [
+                    const ProductSheetDetails(),
+                    ProductCountPrice(id: serviceId),
+                  ],
+                ),
         );
       },
     );
