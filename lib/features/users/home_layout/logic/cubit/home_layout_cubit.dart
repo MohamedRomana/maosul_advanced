@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/di/dependancy_injection.dart';
+import '../../screens/cart/logic/cubit/cart_cubit.dart';
 import '../../screens/cart/ui/cart.dart';
 import '../../screens/home/logic/cubit/home_cubit.dart';
 import '../../screens/home/ui/home.dart';
@@ -15,8 +16,14 @@ class HomeLayoutCubit extends Cubit<HomeLayoutState> {
   int bottomNavIndex = 2;
   List<Widget> bottomNavScreens = [
     const Stores(),
-    const Cart(),
-    BlocProvider(create: (context) => HomeCubit(getIt())..getHome(), child: const Home()),
+    BlocProvider(
+      create: (context) => CartCubit(getIt())..getCart(),
+      child: const Cart(),
+    ),
+    BlocProvider(
+      create: (context) => HomeCubit(getIt())..getHome(),
+      child: const Home(),
+    ),
     const Orders(),
     const Profile(),
   ];

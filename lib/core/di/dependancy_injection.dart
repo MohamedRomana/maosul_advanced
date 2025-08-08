@@ -17,6 +17,8 @@ import '../../features/auth/register/data/repos/register_repo.dart';
 import '../../features/auth/reset_pass/data/repos/reset_pass_repo.dart';
 import '../../features/start/on_boarding/data/apis/intro_api_service.dart';
 import '../../features/start/on_boarding/data/repos/intro_repo.dart';
+import '../../features/users/home_layout/screens/cart/apis/cart_api_service.dart';
+import '../../features/users/home_layout/screens/cart/data/repos/cart_repo.dart';
 import '../../features/users/home_layout/screens/home/apis/home_api_service.dart';
 import '../../features/users/home_layout/screens/home/data/repos/home_repo.dart';
 import '../../features/users/home_layout/screens/stores/data/repos/stores_repo.dart';
@@ -77,16 +79,24 @@ Future<void> setUpGetIt() async {
   getIt.registerLazySingleton<StoresRepo>(() => StoresRepo(getIt()));
 
   // STORE NAME
-  getIt.registerLazySingleton<StoreNameApiService>(() => StoreNameApiService(dio));
+  getIt.registerLazySingleton<StoreNameApiService>(
+    () => StoreNameApiService(dio),
+  );
   getIt.registerLazySingleton<StoreNameRepo>(() => StoreNameRepo(getIt()));
 
   // SHOW PRODUCT
-  getIt.registerLazySingleton<ShowProductApiService>(() => ShowProductApiService(dio));
+  getIt.registerLazySingleton<ShowProductApiService>(
+    () => ShowProductApiService(dio),
+  );
   getIt.registerLazySingleton<ShowProductRepo>(() => ShowProductRepo(getIt()));
 
-
   // ADD TO CART
-  getIt.registerLazySingleton<AddToCartApiService>(() => AddToCartApiService(dio));
+  getIt.registerLazySingleton<AddToCartApiService>(
+    () => AddToCartApiService(dio),
+  );
   getIt.registerLazySingleton<AddToCartRepo>(() => AddToCartRepo(getIt()));
-  
+
+  // CART
+  getIt.registerLazySingleton<CartApiService>(() => CartApiService(dio));
+  getIt.registerLazySingleton<CartRepo>(() => CartRepo(getIt()));
 }
