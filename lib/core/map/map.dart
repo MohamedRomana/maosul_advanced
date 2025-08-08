@@ -9,6 +9,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maosul_advanced/core/helper/extentions.dart';
 import '../../features/auth/register/logic/register_cubit.dart';
+import '../../features/users/home_layout/screens/cart/logic/cubit/store_order_cubit.dart';
 import '../../gen/fonts.gen.dart';
 import '../constants/colors.dart';
 import '../widgets/app_button.dart';
@@ -76,13 +77,21 @@ class _LocationState extends State<Location> {
                       context.read<MapCubit>().changeAddress(
                         newAddress: placeMarkes[0].street ?? '',
                       );
-                      context.read<RegisterCubit>().locationController.text =
-                          context.read<MapCubit>().address ?? "";
+                      context.read<StoreOrderCubit>().address =
+                          context
+                                  .read<RegisterCubit>()
+                                  .locationController
+                                  .text =
+                              context.read<MapCubit>().address ?? "";
                       debugPrint(context.read<MapCubit>().address);
                       setState(() {
-                        context.read<RegisterCubit>().lat =
+                        context
+                            .read<StoreOrderCubit>()
+                            .lat = context.read<RegisterCubit>().lat =
                             context.read<MapCubit>().lat = argument.latitude;
-                        context.read<RegisterCubit>().lng =
+                        context
+                            .read<StoreOrderCubit>()
+                            .lng = context.read<RegisterCubit>().lng =
                             context.read<MapCubit>().lng = argument.longitude;
                         debugPrint(
                           '${context.read<MapCubit>().lat} + ${context.read<MapCubit>().lng}',
@@ -110,19 +119,22 @@ class _LocationState extends State<Location> {
                               newAddress: placeMarks[0].street ?? '',
                             );
                             context
-                                .read<RegisterCubit>()
-                                .lat = context.read<MapCubit>().lat =
-                                position!.latitude;
+                                .read<StoreOrderCubit>()
+                                .lat = context.read<RegisterCubit>().lat =
+                                context.read<MapCubit>().lat =
+                                    position!.latitude;
                             context
-                                .read<RegisterCubit>()
-                                .lng = context.read<MapCubit>().lng =
-                                position!.longitude;
+                                .read<StoreOrderCubit>()
+                                .lng = context.read<RegisterCubit>().lng =
+                                context.read<MapCubit>().lng =
+                                    position!.longitude;
 
-                            context
-                                    .read<RegisterCubit>()
-                                    .locationController
-                                    .text =
-                                context.read<MapCubit>().address ?? "";
+                            context.read<StoreOrderCubit>().address =
+                                context
+                                        .read<RegisterCubit>()
+                                        .locationController
+                                        .text =
+                                    context.read<MapCubit>().address ?? "";
 
                             debugPrint(context.read<MapCubit>().address);
                             debugPrint(context.read<MapCubit>().lat.toString());
@@ -180,7 +192,9 @@ class _LocationState extends State<Location> {
                                   .locationController
                                   .text =
                               "";
-
+                          context.read<StoreOrderCubit>().address = "";
+                          context.read<StoreOrderCubit>().lat = 0.0;
+                          context.read<StoreOrderCubit>().lng = 0.0;
                           myMarkers.clear();
                         });
 
@@ -195,6 +209,12 @@ class _LocationState extends State<Location> {
                     child: AppButton(
                       width: 311.w,
                       onPressed: () {
+                        final mapCubit = context.read<MapCubit>();
+                        final storeOrderCubit = context.read<StoreOrderCubit>();
+
+                        storeOrderCubit.lat = mapCubit.lat ?? 0.0;
+                        storeOrderCubit.lng = mapCubit.lng ?? 0.0;
+                        storeOrderCubit.address = mapCubit.address ?? '';
                         Navigator.pop(context);
                       },
                       child: AppText(

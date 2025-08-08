@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/di/dependancy_injection.dart';
 import '../../screens/cart/logic/cubit/cart_cubit.dart';
+import '../../screens/cart/logic/cubit/store_order_cubit.dart';
 import '../../screens/cart/ui/cart.dart';
 import '../../screens/home/logic/cubit/home_cubit.dart';
 import '../../screens/home/ui/home.dart';
@@ -16,8 +17,15 @@ class HomeLayoutCubit extends Cubit<HomeLayoutState> {
   int bottomNavIndex = 2;
   List<Widget> bottomNavScreens = [
     const Stores(),
-    BlocProvider(
-      create: (context) => CartCubit(getIt())..getCart(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CartCubit(getIt())..getCart(),
+        ),
+        BlocProvider(
+          create: (context) => StoreOrderCubit(getIt())..storeOrder(),
+        ),
+      ],
       child: const Cart(),
     ),
     BlocProvider(

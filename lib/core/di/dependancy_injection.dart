@@ -18,7 +18,9 @@ import '../../features/auth/reset_pass/data/repos/reset_pass_repo.dart';
 import '../../features/start/on_boarding/data/apis/intro_api_service.dart';
 import '../../features/start/on_boarding/data/repos/intro_repo.dart';
 import '../../features/users/home_layout/screens/cart/apis/cart_api_service.dart';
+import '../../features/users/home_layout/screens/cart/apis/store_order_api_service.dart';
 import '../../features/users/home_layout/screens/cart/data/repos/cart_repo.dart';
+import '../../features/users/home_layout/screens/cart/data/repos/store_order_repo.dart';
 import '../../features/users/home_layout/screens/home/apis/home_api_service.dart';
 import '../../features/users/home_layout/screens/home/data/repos/home_repo.dart';
 import '../../features/users/home_layout/screens/stores/data/repos/stores_repo.dart';
@@ -99,4 +101,10 @@ Future<void> setUpGetIt() async {
   // CART
   getIt.registerLazySingleton<CartApiService>(() => CartApiService(dio));
   getIt.registerLazySingleton<CartRepo>(() => CartRepo(getIt()));
+
+  // STORE ORDER
+  getIt.registerLazySingleton<StoreOrderApiService>(
+    () => StoreOrderApiService(dio),
+  );
+  getIt.registerLazySingleton<StoreOrderRepo>(() => StoreOrderRepo(getIt()));
 }

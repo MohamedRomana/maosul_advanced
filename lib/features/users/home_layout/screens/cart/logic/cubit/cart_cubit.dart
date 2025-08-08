@@ -39,7 +39,7 @@ class CartCubit extends Cubit<CartState> {
     response.when(
       success: (cartResponse) {
         if (cartResponse.key == 1) {
-          cartItems = cartResponse.data ?? [];
+          cartItems = cartResponse.data;
           emit(CartState.cartSuccess(cartResponse));
         } else {
           emit(
