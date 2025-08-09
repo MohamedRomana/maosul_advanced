@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:maosul_advanced/core/cache/cache_helper.dart';
+import '../../features/users/store_name/ui/store_name.dart';
 import '../../gen/assets.gen.dart';
 import '../../generated/locale_keys.g.dart';
 import '../constants/colors.dart';
@@ -44,11 +46,22 @@ class CustomAppBar extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      SvgPicture.asset(
-                        Assets.svg.drawer,
-                        height: 15.h,
-                        width: 19.w,
-                        fit: BoxFit.cover,
+                      InkWell(
+                        onTap: () => advancedDrawerController.showDrawer(),
+                        child: ValueListenableBuilder<AdvancedDrawerValue>(
+                          valueListenable: advancedDrawerController,
+                          builder: (_, value, __) {
+                            return AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 250),
+                              child: SvgPicture.asset(
+                                Assets.svg.drawer,
+                                height: 15.h,
+                                width: 19.w,
+                                fit: BoxFit.cover,
+                              ),
+                            );
+                          },
+                        ),
                       ),
                       SizedBox(
                         width: 150.w,
@@ -75,10 +88,7 @@ class CustomAppBar extends StatelessWidget {
                             end: 6.w,
                           ),
                         ),
-                        const Icon(
-                          Icons.location_on,
-                          color: AppColors.primary,
-                        ),
+                        const Icon(Icons.location_on, color: AppColors.primary),
                       ],
                     ),
                   },
