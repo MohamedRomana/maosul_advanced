@@ -21,6 +21,8 @@ import '../../features/start/on_boarding/ui/on_boarding.dart';
 import '../../features/start/splash/splash.dart';
 import '../../features/start/types/logic/types_cubit.dart';
 import '../../features/start/types/ui/types_view.dart';
+import '../../features/users/edit_profile/logic/cubit/edit_profile_cubit.dart';
+import '../../features/users/edit_profile/ui/edit_profile.dart';
 import '../../features/users/home_layout/home_layout.dart';
 import '../../features/users/home_layout/logic/cubit/home_layout_cubit.dart';
 import '../../features/users/sections/ui/sections.dart';
@@ -118,8 +120,16 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                StoreNameCubit(getIt())..getStoreName(providerId: providerId.toString()),
+                StoreNameCubit(getIt())
+                  ..getStoreName(providerId: providerId.toString()),
             child: StoreName(providerId: providerId.toString()),
+          ),
+        );
+      case Routes.editProfile:
+        return MaterialPageRoute(
+          builder: (_) => MultiBlocProvider(
+            providers: [BlocProvider(create: (_) => EditProfileCubit())],
+            child: const EditProfile(),
           ),
         );
       default:
