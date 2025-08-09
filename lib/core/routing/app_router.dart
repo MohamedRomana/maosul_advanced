@@ -23,6 +23,7 @@ import '../../features/start/types/logic/types_cubit.dart';
 import '../../features/start/types/ui/types_view.dart';
 import '../../features/users/edit_profile/logic/cubit/edit_profile_cubit.dart';
 import '../../features/users/edit_profile/ui/edit_profile.dart';
+import '../../features/users/favourites/favourites.dart';
 import '../../features/users/home_layout/home_layout.dart';
 import '../../features/users/home_layout/logic/cubit/home_layout_cubit.dart';
 import '../../features/users/sections/ui/sections.dart';
@@ -132,6 +133,8 @@ class AppRouter {
             child: const EditProfile(),
           ),
         );
+      case Routes.favourites:
+        return MaterialPageRoute(builder: (_) => const Favourites());
       default:
         return MaterialPageRoute(builder: (_) => const Splash());
     }

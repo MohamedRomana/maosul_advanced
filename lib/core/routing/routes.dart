@@ -18,4 +18,5 @@ class Routes {
   static const String sections = '/sections';
   static const String storeName = '/storeName';
   static const String editProfile = '/editProfile';
+  static const String favourites = '/favourites';
 }
