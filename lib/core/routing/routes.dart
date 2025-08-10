@@ -19,4 +19,7 @@ class Routes {
   static const String storeName = '/storeName';
   static const String editProfile = '/editProfile';
   static const String favourites = '/favourites';
+  static const String aboutUs = '/aboutUs';
+  static const String contactUs = '/contactUs';
+  static const String privacyPolicy = '/privacyPolicy';
 }
