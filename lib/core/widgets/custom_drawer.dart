@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:maosul_advanced/core/helper/extentions.dart';
+import '../../features/users/store_name/ui/store_name.dart';
 import '../../gen/assets.gen.dart';
 import '../cache/cache_helper.dart';
 import '../constants/colors.dart';
@@ -45,46 +46,70 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           child: Column(
             children: [
-              Row(
-                children: [
-                  SvgPicture.asset(Assets.svg.dashboard),
-                  AppText(
-                    text: 'الأقسام',
-                    size: 16.sp,
-                    color: Colors.black,
-                    start: 11.w,
-                  ),
-                ],
+              InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () {
+                  advancedDrawerController.hideDrawer();
+                  Navigator.pushNamed(context, Routes.sections);
+                },
+                child: Row(
+                  children: [
+                    SvgPicture.asset(Assets.svg.dashboard),
+                    AppText(
+                      text: 'الأقسام',
+                      size: 16.sp,
+                      color: Colors.black,
+                      start: 11.w,
+                    ),
+                  ],
+                ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.symmetric(vertical: 20.h),
                 child: Divider(color: const Color(0xff0D335D).withAlpha(70)),
               ),
-              Row(
-                children: [
-                  SvgPicture.asset(Assets.svg.sms),
-                  AppText(
-                    text: 'اتصل بنا',
-                    size: 16.sp,
-                    color: Colors.black,
-                    start: 11.w,
-                  ),
-                ],
+              InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () {
+                  advancedDrawerController.hideDrawer();
+                  Navigator.pushNamed(context, Routes.contactUs);
+                },
+                child: Row(
+                  children: [
+                    SvgPicture.asset(Assets.svg.sms),
+                    AppText(
+                      text: 'اتصل بنا',
+                      size: 16.sp,
+                      color: Colors.black,
+                      start: 11.w,
+                    ),
+                  ],
+                ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.symmetric(vertical: 20.h),
                 child: Divider(color: const Color(0xff0D335D).withAlpha(70)),
               ),
-              Row(
-                children: [
-                  SvgPicture.asset(Assets.svg.info),
-                  AppText(
-                    text: 'عن التطبيق',
-                    size: 16.sp,
-                    color: Colors.black,
-                    start: 11.w,
-                  ),
-                ],
+              InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () {
+                  advancedDrawerController.hideDrawer();
+                  Navigator.pushNamed(context, Routes.aboutUs);
+                },
+                child: Row(
+                  children: [
+                    SvgPicture.asset(Assets.svg.info),
+                    AppText(
+                      text: 'عن التطبيق',
+                      size: 16.sp,
+                      color: Colors.black,
+                      start: 11.w,
+                    ),
+                  ],
+                ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.symmetric(vertical: 20.h),
@@ -105,16 +130,24 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 padding: EdgeInsetsDirectional.symmetric(vertical: 20.h),
                 child: Divider(color: const Color(0xff0D335D).withAlpha(70)),
               ),
-              Row(
-                children: [
-                  SvgPicture.asset(Assets.svg.document),
-                  AppText(
-                    text: 'سياسة الخصوصية',
-                    size: 16.sp,
-                    color: Colors.black,
-                    start: 11.w,
-                  ),
-                ],
+              InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () {
+                  advancedDrawerController.hideDrawer();
+                  Navigator.pushNamed(context, Routes.privacyPolicy);
+                },
+                child: Row(
+                  children: [
+                    SvgPicture.asset(Assets.svg.document),
+                    AppText(
+                      text: 'سياسة الخصوصية',
+                      size: 16.sp,
+                      color: Colors.black,
+                      start: 11.w,
+                    ),
+                  ],
+                ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.symmetric(vertical: 20.h),

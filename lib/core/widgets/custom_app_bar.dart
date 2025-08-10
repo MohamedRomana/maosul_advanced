@@ -36,7 +36,7 @@ class CustomAppBar extends StatelessWidget {
               height: 113.h,
               width: double.infinity,
               padding: EdgeInsetsDirectional.only(
-                bottom: 41.h,
+                bottom: 30.h,
                 start: 16.w,
                 end: 16.w,
                 top: 50.h,
