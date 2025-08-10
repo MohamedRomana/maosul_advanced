@@ -115,16 +115,24 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 padding: EdgeInsetsDirectional.symmetric(vertical: 20.h),
                 child: Divider(color: const Color(0xff0D335D).withAlpha(70)),
               ),
-              Row(
-                children: [
-                  SvgPicture.asset(Assets.svg.message),
-                  AppText(
-                    text: 'الدعم الفني',
-                    size: 16.sp,
-                    color: Colors.black,
-                    start: 11.w,
-                  ),
-                ],
+              InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () {
+                  advancedDrawerController.hideDrawer();
+                  Navigator.pushNamed(context, Routes.technicalSupport);
+                },
+                child: Row(
+                  children: [
+                    SvgPicture.asset(Assets.svg.message),
+                    AppText(
+                      text: 'الدعم الفني',
+                      size: 16.sp,
+                      color: Colors.black,
+                      start: 11.w,
+                    ),
+                  ],
+                ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.symmetric(vertical: 20.h),

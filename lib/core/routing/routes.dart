@@ -22,4 +22,5 @@ class Routes {
   static const String aboutUs = '/aboutUs';
   static const String contactUs = '/contactUs';
   static const String privacyPolicy = '/privacyPolicy';
+  static const String technicalSupport = '/technicalSupport';
 }

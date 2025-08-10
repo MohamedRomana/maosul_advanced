@@ -24,6 +24,7 @@ import '../../features/start/types/ui/types_view.dart';
 import '../../features/users/drawer_items/about_us/ui/about_us.dart';
 import '../../features/users/drawer_items/contact_us/ui/contact_us.dart';
 import '../../features/users/drawer_items/privacy_policy/ui/privacy_policy.dart';
+import '../../features/users/drawer_items/technical_support/ui/technical_support.dart';
 import '../../features/users/edit_profile/logic/cubit/edit_profile_cubit.dart';
 import '../../features/users/edit_profile/ui/edit_profile.dart';
 import '../../features/users/favourites/favourites.dart';
@@ -138,12 +139,14 @@ class AppRouter {
         );
       case Routes.favourites:
         return MaterialPageRoute(builder: (_) => const Favourites());
-        case Routes.aboutUs:
+      case Routes.aboutUs:
         return MaterialPageRoute(builder: (_) => const AboutUs());
-        case Routes.contactUs:
+      case Routes.contactUs:
         return MaterialPageRoute(builder: (_) => const ContactUs());
-        case Routes.privacyPolicy:
+      case Routes.privacyPolicy:
         return MaterialPageRoute(builder: (_) => const PrivacyPolicy());
+      case Routes.technicalSupport:
+        return MaterialPageRoute(builder: (_) => const TechnicalSupport());
       default:
         return MaterialPageRoute(builder: (_) => const Splash());
     }
