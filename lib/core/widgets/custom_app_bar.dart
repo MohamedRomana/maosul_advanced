@@ -4,10 +4,12 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:maosul_advanced/core/cache/cache_helper.dart';
+import 'package:maosul_advanced/core/helper/extentions.dart';
 import '../../features/users/store_name/ui/store_name.dart';
 import '../../gen/assets.gen.dart';
 import '../../generated/locale_keys.g.dart';
 import '../constants/colors.dart';
+import '../routing/routes.dart';
 import 'app_input.dart';
 import 'app_text.dart';
 
@@ -89,6 +91,20 @@ class CustomAppBar extends StatelessWidget {
                           ),
                         ),
                         const Icon(Icons.location_on, color: AppColors.primary),
+                      ],
+                    ),
+                  } else ...{
+                    Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            context.pushNamed(Routes.notifications);
+                          },
+                          child: const Icon(
+                            Icons.notifications,
+                            color: Colors.black,
+                          ),
+                        ),
                       ],
                     ),
                   },

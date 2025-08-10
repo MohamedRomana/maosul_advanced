@@ -30,6 +30,7 @@ import '../../features/users/edit_profile/ui/edit_profile.dart';
 import '../../features/users/favourites/favourites.dart';
 import '../../features/users/home_layout/home_layout.dart';
 import '../../features/users/home_layout/logic/cubit/home_layout_cubit.dart';
+import '../../features/users/notifications/ui/notifications.dart';
 import '../../features/users/sections/ui/sections.dart';
 import '../../features/users/store_name/logic/cubit/store_name_cubit.dart';
 import '../di/dependancy_injection.dart';
@@ -147,6 +148,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const PrivacyPolicy());
       case Routes.technicalSupport:
         return MaterialPageRoute(builder: (_) => const TechnicalSupport());
+      case Routes.notifications:
+        return MaterialPageRoute(builder: (_) => const Notifications());
       default:
         return MaterialPageRoute(builder: (_) => const Splash());
     }
