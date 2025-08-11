@@ -19,48 +19,53 @@ class FinishedOrders extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       itemCount: 30,
       separatorBuilder: (context, index) => SizedBox(height: 16.h),
-      itemBuilder: (context, index) => Container(
-        width: 343.w,
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-        decoration: BoxDecoration(
-          color: AppColors.primaryMedium,
-          borderRadius: BorderRadius.circular(6.r),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.primary.withAlpha(50),
-              blurRadius: 5.r,
-              spreadRadius: 1.r,
-              offset: const Offset(0, 0),
-            ),
-          ],
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(14.r),
-              child: Image.asset(
-                Assets.img.market.path,
-                height: 80.w,
-                width: 80.w,
-                fit: BoxFit.fill,
+      itemBuilder: (context, index) => InkWell(
+        onTap: () {
+          
+        },
+        child: Container(
+          width: 343.w,
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+          decoration: BoxDecoration(
+            color: AppColors.primaryMedium,
+            borderRadius: BorderRadius.circular(6.r),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.primary.withAlpha(50),
+                blurRadius: 5.r,
+                spreadRadius: 1.r,
+                offset: const Offset(0, 0),
               ),
-            ),
-            SizedBox(width: 10.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AppText(text: 'رقم الطلب: 25423', size: 14.sp, bottom: 7.h),
-                AppText(
-                  text: 'حالة الطلب: جاري العمل عليه',
-                  size: 14.sp,
-                  color: Colors.black,
-                  bottom: 7.h,
+            ],
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(14.r),
+                child: Image.asset(
+                  Assets.img.market.path,
+                  height: 80.w,
+                  width: 80.w,
+                  fit: BoxFit.fill,
                 ),
-                AppText(text: 'اسم المتجر', size: 10.sp, color: Colors.grey),
-              ],
-            ),
-          ],
+              ),
+              SizedBox(width: 10.w),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppText(text: 'رقم الطلب: 25423', size: 14.sp, bottom: 7.h),
+                  AppText(
+                    text: 'حالة الطلب: جاري العمل عليه',
+                    size: 14.sp,
+                    color: Colors.black,
+                    bottom: 7.h,
+                  ),
+                  AppText(text: 'اسم المتجر', size: 10.sp, color: Colors.grey),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
