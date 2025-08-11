@@ -24,4 +24,5 @@ class Routes {
   static const String privacyPolicy = '/privacyPolicy';
   static const String technicalSupport = '/technicalSupport';
   static const String notifications = '/notifications';
+  static const String orderDetails = '/orderDetails';
 }

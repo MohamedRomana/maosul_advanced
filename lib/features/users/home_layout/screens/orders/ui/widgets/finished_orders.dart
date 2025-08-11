@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maosul_advanced/core/helper/extentions.dart';
 import '../../../../../../../core/constants/colors.dart';
+import '../../../../../../../core/routing/routes.dart';
 import '../../../../../../../core/widgets/app_text.dart';
 import '../../../../../../../gen/assets.gen.dart';
 
@@ -20,8 +22,10 @@ class FinishedOrders extends StatelessWidget {
       itemCount: 30,
       separatorBuilder: (context, index) => SizedBox(height: 16.h),
       itemBuilder: (context, index) => InkWell(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         onTap: () {
-          
+          context.pushNamed(Routes.orderDetails);
         },
         child: Container(
           width: 343.w,
