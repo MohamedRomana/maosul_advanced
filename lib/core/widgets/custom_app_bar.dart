@@ -18,9 +18,11 @@ class CustomAppBar extends StatelessWidget {
   final bool isStore;
   final String title;
   final bool isSearch;
+  final bool isOrders;
   final Widget? widget;
   const CustomAppBar({
     super.key,
+    this.isOrders = false,
     this.isSearch = false,
     this.isHome = false,
     this.isStore = false,
@@ -111,12 +113,13 @@ class CustomAppBar extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              height: 30.h,
-              width: double.infinity,
-              color: Colors.white,
-            ),
-            SizedBox(height: 16.h),
+            if (!isOrders)
+              Container(
+                height: 30.h,
+                width: double.infinity,
+                color: Colors.white,
+              ),
+            if (!isOrders) SizedBox(height: 16.h),
           ],
         ),
 
@@ -146,6 +149,8 @@ class CustomAppBar extends StatelessWidget {
             right: 15.w,
             child: widget ?? Container(),
           ),
+        } else ...{
+          const SizedBox(),
         },
       ],
     );
